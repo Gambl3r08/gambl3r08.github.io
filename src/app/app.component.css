@@ -1,0 +1,11 @@
+.contenido{
+    text-align: center;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
+    background-color: #333;
+    color: white;
+}
+
+*{
+    background-color: #333;
+}
