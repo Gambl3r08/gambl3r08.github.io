@@ -1,1 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: darkgrey;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    min-height: 100vh; /* Asegura que el body ocupe al menos el 100% de la altura de la ventana */
+    margin: 0; /* Elimina los márgenes predeterminados */
+    padding: 0; /* Elimina los padding predeterminados */
+    box-sizing: border-box; /* Incluye el padding y el borde en el cálculo del ancho y alto del elemento */
+  }
+  
+  /* Estilo para el contenedor principal */
+  .container {
+    width: 100%; /* Ancho máximo del contenedor */
+    max-width: 1200px; /* Ancho máximo fijo para grandes pantallas */
+    padding: 20px; /* Espacio alrededor del contenido */
+    box-sizing: border-box; /* Incluye el padding y el borde en el cálculo del ancho y alto del elemento */
+  }
+  
