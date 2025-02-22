@@ -1,0 +1,19 @@
+<nav class="navbar">
+    <div class="navbar-brand">
+        <a routerLink="/">Roberto Lozada</a>
+    </div>
+
+    <button class="menu-toggle" (click)="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <div class="navbar-links" [class.active]="isMenuOpen">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Inicio</a>
+        <a routerLink="/about" routerLinkActive="active">Sobre Mí</a>
+        <a routerLink="/projects" routerLinkActive="active">Proyectos</a>
+        <a routerLink="/skills" routerLinkActive="active">Habilidades</a>
+        <a routerLink="/contact" routerLinkActive="active">Contacto</a>
+    </div>
+</nav>

@@ -1,0 +1,12 @@
+<section class="projects section fade-in">
+    <div class="container">
+        <h2 class="section-title">Proyectos</h2>
+        <div class="projects-grid">
+            <div class="project-card" *ngFor="let project of projects">
+                <h3>{{project.name}}</h3>
+                <p>{{project.description}}</p>
+                <a [href]="project.link" target="_blank" class="btn btn-outline">Ver Proyecto</a>
+            </div>
+        </div>
+    </div>
+</section>

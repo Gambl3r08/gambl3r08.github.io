@@ -1,0 +1,23 @@
+.skills {
+  text-align: center;
+  
+  .skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    
+    .skill {
+      background-color: var(--light-gray);
+      padding: 0.5rem 1rem;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      transition: background-color var(--transition-speed) ease;
+      
+      &:hover {
+        background-color: var(--primary-color);
+        color: white;
+      }
+    }
+  }
+}
