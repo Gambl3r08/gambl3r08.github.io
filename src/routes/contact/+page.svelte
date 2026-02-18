@@ -1,25 +1,25 @@
 <script lang="ts">
 	import { siteData } from '$lib/data/site';
+	import { t } from '$lib/i18n';
 </script>
 
 <svelte:head>
-	<title>Contacto | {siteData.name}</title>
-	<meta name="description" content="Contacta con {siteData.name}" />
+	<title>{$t.contact.title} | {siteData.name}</title>
+	<meta name="description" content="{$t.contact.title} - {siteData.name}" />
 </svelte:head>
 
 <section class="animate-fade-in px-4 py-16">
 	<div class="mx-auto max-w-4xl text-center">
-		<h1 class="section-title">Contacto</h1>
+		<h1 class="section-title">{$t.contact.title}</h1>
 
 		<p class="text-secondary mx-auto mb-12 max-w-2xl text-lg">
-			¿Tienes un proyecto en mente o quieres colaborar? No dudes en
-			contactarme. Estaré encantado de escucharte.
+			{$t.contact.description}
 		</p>
 
-		<div class="grid gap-6 md:grid-cols-3">
+		<div class="mx-auto grid max-w-2xl gap-6 md:grid-cols-2">
 			<div class="card">
 				<div class="mb-4 text-4xl">📧</div>
-				<h3 class="mb-2 font-semibold">Email</h3>
+				<h3 class="mb-2 font-semibold">{$t.contact.email}</h3>
 				<a
 					href="mailto:{siteData.contact.email}"
 					class="text-primary hover:underline"
@@ -29,18 +29,13 @@
 			</div>
 			<div class="card">
 				<div class="mb-4 text-4xl">📍</div>
-				<h3 class="mb-2 font-semibold">Ubicación</h3>
+				<h3 class="mb-2 font-semibold">{$t.contact.location}</h3>
 				<p class="text-secondary">{siteData.contact.address}</p>
-			</div>
-			<div class="card">
-				<div class="mb-4 text-4xl">📱</div>
-				<h3 class="mb-2 font-semibold">Teléfono</h3>
-				<p class="text-secondary">{siteData.contact.phone}</p>
 			</div>
 		</div>
 
 		<div class="mt-12">
-			<h2 class="mb-6 text-2xl font-semibold">Sígueme en redes</h2>
+			<h2 class="mb-6 text-2xl font-semibold">{$t.contact.followMe}</h2>
 			<div class="flex justify-center gap-6">
 				<a
 					href="https://github.com/{siteData.contact.github}"

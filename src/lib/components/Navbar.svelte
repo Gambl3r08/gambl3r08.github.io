@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import { t } from '$lib/i18n';
+	import LanguageSelector from './LanguageSelector.svelte';
 
 	let isMenuOpen = $state(false);
 
@@ -12,13 +14,13 @@
 	};
 
 	const navLinks = [
-		{ href: '/', label: 'Inicio' },
-		{ href: '/about', label: 'Sobre Mí' },
-		{ href: '/projects', label: 'Proyectos' },
-		{ href: '/skills', label: 'Habilidades' },
-		{ href: '/blog', label: 'Blog' },
-		{ href: '/contact', label: 'Contacto' }
-	];
+		{ href: '/', key: 'home' },
+		{ href: '/about', key: 'about' },
+		{ href: '/projects', key: 'projects' },
+		{ href: '/skills', key: 'skills' },
+		{ href: '/blog', key: 'blog' },
+		{ href: '/contact', key: 'contact' }
+	] as const;
 </script>
 
 <nav class="sticky top-0 z-50 bg-white shadow-sm">
@@ -32,7 +34,7 @@
 			</a>
 
 			<!-- Desktop Navigation -->
-			<div class="hidden gap-8 md:flex">
+			<div class="hidden items-center gap-6 md:flex">
 				{#each navLinks as link}
 					<a
 						href={link.href}
@@ -40,31 +42,35 @@
 							? 'text-primary'
 							: 'text-gray-700 hover:text-primary'}"
 					>
-						{link.label}
+						{$t.nav[link.key]}
 					</a>
 				{/each}
+				<LanguageSelector />
 			</div>
 
 			<!-- Mobile Menu Button -->
-			<button class="p-2 md:hidden" onclick={toggleMenu} aria-label="Toggle menu">
-				<div class="flex h-5 w-6 flex-col justify-between">
-					<span
-						class="block h-0.5 w-full bg-gray-900 transition-transform {isMenuOpen
-							? 'translate-y-2 rotate-45'
-							: ''}"
-					></span>
-					<span
-						class="block h-0.5 w-full bg-gray-900 transition-opacity {isMenuOpen
-							? 'opacity-0'
-							: ''}"
-					></span>
-					<span
-						class="block h-0.5 w-full bg-gray-900 transition-transform {isMenuOpen
-							? '-translate-y-2 -rotate-45'
-							: ''}"
-					></span>
-				</div>
-			</button>
+			<div class="flex items-center gap-2 md:hidden">
+				<LanguageSelector />
+				<button class="p-2" onclick={toggleMenu} aria-label="Toggle menu">
+					<div class="flex h-5 w-6 flex-col justify-between">
+						<span
+							class="block h-0.5 w-full bg-gray-900 transition-transform {isMenuOpen
+								? 'translate-y-2 rotate-45'
+								: ''}"
+						></span>
+						<span
+							class="block h-0.5 w-full bg-gray-900 transition-opacity {isMenuOpen
+								? 'opacity-0'
+								: ''}"
+						></span>
+						<span
+							class="block h-0.5 w-full bg-gray-900 transition-transform {isMenuOpen
+								? '-translate-y-2 -rotate-45'
+								: ''}"
+						></span>
+					</div>
+				</button>
+			</div>
 		</div>
 
 		<!-- Mobile Navigation -->
@@ -78,7 +84,7 @@
 							: 'text-gray-700'}"
 						onclick={closeMenu}
 					>
-						{link.label}
+						{$t.nav[link.key]}
 					</a>
 				{/each}
 			</div>

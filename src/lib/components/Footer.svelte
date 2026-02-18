@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { siteData } from '$lib/data/site';
+	import { t } from '$lib/i18n';
 
 	const currentYear = new Date().getFullYear();
 </script>
@@ -8,7 +9,7 @@
 	<div class="mx-auto max-w-6xl px-4">
 		<div class="flex flex-col items-center justify-between gap-4 md:flex-row">
 			<p class="text-secondary text-sm">
-				&copy; {currentYear} {siteData.name}. Todos los derechos reservados.
+				&copy; {currentYear} {siteData.name}. {$t.footer.rights}
 			</p>
 			<div class="flex gap-6">
 				<a

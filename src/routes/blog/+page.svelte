@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { siteData } from '$lib/data/site';
+	import { t } from '$lib/i18n';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -14,20 +15,19 @@
 </script>
 
 <svelte:head>
-	<title>Blog | {siteData.name}</title>
+	<title>{$t.blog.title} | {siteData.name}</title>
 	<meta
 		name="description"
-		content="Artículos sobre desarrollo backend, AWS, Python y más"
+		content="{$t.blog.description}"
 	/>
 </svelte:head>
 
 <section class="animate-fade-in px-4 py-16">
 	<div class="mx-auto max-w-4xl">
-		<h1 class="section-title">Blog</h1>
+		<h1 class="section-title">{$t.blog.title}</h1>
 
 		<p class="text-secondary mx-auto mb-12 max-w-2xl text-center text-lg">
-			Artículos sobre desarrollo backend, buenas prácticas, tecnologías cloud
-			y más.
+			{$t.blog.description}
 		</p>
 
 		{#if data.posts && data.posts.length > 0}
@@ -62,7 +62,7 @@
 		{:else}
 			<div class="text-center">
 				<p class="text-secondary text-lg">
-					Aún no hay artículos publicados. ¡Vuelve pronto!
+					{$t.blog.noPosts}
 				</p>
 			</div>
 		{/if}

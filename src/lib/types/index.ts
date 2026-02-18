@@ -31,7 +31,6 @@ export interface GitHubRepo {
 
 export interface ContactInfo {
 	email: string;
-	phone: string;
 	address: string;
 	github: string;
 	linkedin: string;

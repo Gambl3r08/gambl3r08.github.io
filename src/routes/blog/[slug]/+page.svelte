@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { siteData } from '$lib/data/site';
+	import { t } from '$lib/i18n';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -46,7 +47,7 @@
 		</div>
 
 		<footer class="mt-12 border-t pt-8 text-center">
-			<a href="/blog" class="btn-outline">← Volver al blog</a>
+			<a href="/blog" class="btn-outline">{$t.blog.backToBlog}</a>
 		</footer>
 	</div>
 </article>

@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { siteData } from '$lib/data/site';
+	import { t } from '$lib/i18n';
 </script>
 
 <svelte:head>
-	<title>{siteData.name} | {siteData.title}</title>
+	<title>{siteData.name} | {$t.home.title}</title>
 	<meta
 		name="description"
-		content="Portfolio de {siteData.name} - {siteData.title}"
+		content="Portfolio de {siteData.name} - {$t.home.title}"
 	/>
 </svelte:head>
 
@@ -19,17 +20,17 @@
 		>
 			<div class="flex-1 text-center md:text-left">
 				<h1 class="mb-4 text-4xl font-bold text-gray-900 md:text-5xl">
-					Hola! Soy <span class="text-primary">{siteData.name}</span>
+					{$t.home.greeting} <span class="text-primary">{siteData.name}</span>
 				</h1>
 				<h2 class="mb-6 text-2xl text-primary md:text-3xl">
-					{siteData.title}
+					{$t.home.title}
 				</h2>
 				<p class="text-secondary mb-8 max-w-xl text-lg">
-					{siteData.description}
+					{$t.home.description}
 				</p>
 				<div class="flex justify-center gap-4 md:justify-start">
-					<a href="/projects" class="btn-primary">Ver Proyectos</a>
-					<a href="/contact" class="btn-outline">Contactar</a>
+					<a href="/projects" class="btn-primary">{$t.home.viewProjects}</a>
+					<a href="/contact" class="btn-outline">{$t.home.contactMe}</a>
 				</div>
 			</div>
 
@@ -39,7 +40,7 @@
 				>
 					<div class="text-center">
 						<div class="mb-2 text-6xl">👨‍💻</div>
-						<p class="text-secondary text-sm">Backend Developer</p>
+						<p class="text-secondary text-sm">{$t.home.role}</p>
 					</div>
 				</div>
 			</div>
