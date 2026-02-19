@@ -1,12 +1,18 @@
 <script lang="ts">
 	import { siteData } from '$lib/data/site';
-	import { t } from '$lib/i18n';
+	import { t, language } from '$lib/i18n';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
 
+	// Filtrar posts por idioma actual
+	let filteredPosts = $derived(
+		data.posts.filter((post) => post.lang === $language)
+	);
+
 	function formatDate(dateString: string): string {
-		return new Date(dateString).toLocaleDateString('es-ES', {
+		const locale = $language === 'es' ? 'es-ES' : 'en-US';
+		return new Date(dateString).toLocaleDateString(locale, {
 			year: 'numeric',
 			month: 'long',
 			day: 'numeric'
@@ -30,9 +36,9 @@
 			{$t.blog.description}
 		</p>
 
-		{#if data.posts && data.posts.length > 0}
+		{#if filteredPosts && filteredPosts.length > 0}
 			<div class="grid gap-8">
-				{#each data.posts as post}
+				{#each filteredPosts as post}
 					<article class="card">
 						<a href="/blog/{post.slug}" class="block">
 							<h2

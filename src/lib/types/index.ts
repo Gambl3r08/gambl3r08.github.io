@@ -4,6 +4,7 @@ export interface PostMetadata {
 	date: string;
 	published: boolean;
 	tags: string[];
+	lang: 'es' | 'en';
 	image?: string;
 	slug?: string;
 }

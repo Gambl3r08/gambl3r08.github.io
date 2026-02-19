@@ -3,6 +3,7 @@ title: "Configurando FastAPI para Producción"
 description: "Guía completa para configurar y desplegar FastAPI con las mejores prácticas"
 date: "2024-02-01"
 published: true
+lang: es
 tags:
   - python
   - fastapi
