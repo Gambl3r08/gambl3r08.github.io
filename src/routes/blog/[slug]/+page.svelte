@@ -19,19 +19,19 @@
 	<meta name="description" content={data.metadata.description} />
 </svelte:head>
 
-<article class="animate-fade-in px-4 py-16">
+<article class="px-4 py-16">
 	<div class="mx-auto max-w-3xl">
 		<header class="mb-12 text-center">
-			<h1 class="mb-4 text-4xl font-bold">{data.metadata.title}</h1>
-			<p class="text-secondary mb-4 text-xl">{data.metadata.description}</p>
-			<time datetime={data.metadata.date} class="text-gray-500">
+			<h1 class="mb-4 font-heading text-4xl font-bold text-heading">{data.metadata.title}</h1>
+			<p class="mb-4 text-xl text-muted">{data.metadata.description}</p>
+			<time datetime={data.metadata.date} class="text-muted">
 				{formatDate(data.metadata.date)}
 			</time>
 			{#if data.metadata.tags && data.metadata.tags.length > 0}
 				<div class="mt-4 flex justify-center gap-2">
 					{#each data.metadata.tags as tag}
 						<span
-							class="rounded-full bg-primary-50 px-3 py-1 text-sm text-primary"
+							class="rounded-full border border-accent/10 bg-accent/5 px-3 py-1 text-sm text-accent-light"
 						>
 							{tag}
 						</span>
@@ -40,13 +40,11 @@
 			{/if}
 		</header>
 
-		<div
-			class="prose prose-lg mx-auto max-w-none prose-headings:text-gray-900 prose-a:text-primary prose-code:rounded prose-code:bg-gray-100 prose-code:px-1 prose-code:py-0.5 prose-pre:bg-gray-900"
-		>
+		<div class="prose prose-lg mx-auto max-w-none">
 			<data.content />
 		</div>
 
-		<footer class="mt-12 border-t pt-8 text-center">
+		<footer class="mt-12 border-t border-white/[0.06] pt-8 text-center">
 			<a href="/blog" class="btn-outline">{$t.blog.backToBlog}</a>
 		</footer>
 	</div>

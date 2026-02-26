@@ -5,10 +5,13 @@
 	const currentYear = new Date().getFullYear();
 </script>
 
-<footer class="border-t bg-gray-50 py-8">
+<footer class="relative py-8" style="background: rgba(30, 41, 59, 0.5)">
+	<!-- Gradient accent line -->
+	<div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"></div>
+
 	<div class="mx-auto max-w-6xl px-4">
 		<div class="flex flex-col items-center justify-between gap-4 md:flex-row">
-			<p class="text-secondary text-sm">
+			<p class="text-sm text-muted">
 				&copy; {currentYear} {siteData.name}. {$t.footer.rights}
 			</p>
 			<div class="flex gap-6">
@@ -16,7 +19,7 @@
 					href="https://github.com/{siteData.contact.github}"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="text-secondary hover:text-primary transition-colors"
+					class="text-muted transition-colors hover:text-accent-light"
 					aria-label="GitHub"
 				>
 					<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
@@ -29,7 +32,7 @@
 					href="https://linkedin.com/in/{siteData.contact.linkedin}"
 					target="_blank"
 					rel="noopener noreferrer"
-					class="text-secondary hover:text-primary transition-colors"
+					class="text-muted transition-colors hover:text-accent-light"
 					aria-label="LinkedIn"
 				>
 					<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">

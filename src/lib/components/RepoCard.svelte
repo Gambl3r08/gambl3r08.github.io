@@ -9,7 +9,7 @@
 	let { repo }: Props = $props();
 
 	const languageColor = $derived(
-		repo.language ? languageColors[repo.language] || '#6c757d' : null
+		repo.language ? languageColors[repo.language] || '#94a3b8' : null
 	);
 </script>
 
@@ -17,11 +17,19 @@
 	href={repo.html_url}
 	target="_blank"
 	rel="noopener noreferrer"
-	class="card block"
+	class="card group relative block overflow-hidden"
 >
+	<!-- Language color accent bar -->
+	{#if languageColor}
+		<div
+			class="absolute inset-x-0 top-0 h-0.5 opacity-60 transition-opacity group-hover:opacity-100"
+			style="background-color: {languageColor}"
+		></div>
+	{/if}
+
 	<div class="mb-3 flex items-start justify-between">
-		<h3 class="truncate text-lg font-semibold text-primary">{repo.name}</h3>
-		<div class="text-secondary flex items-center gap-3 text-sm">
+		<h3 class="truncate text-lg font-semibold text-heading transition-colors group-hover:text-accent-light">{repo.name}</h3>
+		<div class="flex items-center gap-3 text-sm text-muted">
 			{#if repo.stargazers_count > 0}
 				<span class="flex items-center gap-1">
 					<svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
@@ -47,14 +55,17 @@
 		</div>
 	</div>
 
-	<p class="text-secondary mb-4 line-clamp-2 text-sm">
-		{repo.description || 'Sin descripción'}
+	<p class="mb-4 line-clamp-2 text-sm text-muted">
+		{repo.description || 'Sin descripcion'}
 	</p>
 
 	<div class="flex items-center justify-between">
 		{#if repo.language && languageColor}
-			<span class="flex items-center gap-2 text-sm">
-				<span class="h-3 w-3 rounded-full" style="background-color: {languageColor}"></span>
+			<span class="flex items-center gap-2 text-sm text-body">
+				<span
+					class="h-3 w-3 rounded-full"
+					style="background-color: {languageColor}; box-shadow: 0 0 6px {languageColor}"
+				></span>
 				{repo.language}
 			</span>
 		{:else}
@@ -64,7 +75,7 @@
 		{#if repo.topics && repo.topics.length > 0}
 			<div class="flex gap-1">
 				{#each repo.topics.slice(0, 2) as topic}
-					<span class="rounded bg-primary-50 px-2 py-0.5 text-xs text-primary">
+					<span class="rounded border border-accent/10 bg-accent/5 px-2 py-0.5 text-xs text-accent-light">
 						{topic}
 					</span>
 				{/each}

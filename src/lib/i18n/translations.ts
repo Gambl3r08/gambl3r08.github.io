@@ -12,7 +12,7 @@ export const translations = {
     // Home
     home: {
       greeting: 'Hola! Soy',
-      title: 'Ingeniero de Software',
+      title: 'Desarrollador de Software',
       description:
         'Especializado en automatización de redes y sistemas inteligentes con IA. +5 años construyendo plataformas enterprise con FastAPI, OpenAI Agents y arquitecturas cloud-native.',
       viewProjects: 'Ver Proyectos',
@@ -23,7 +23,7 @@ export const translations = {
     about: {
       title: 'Sobre Mí',
       description:
-        'Soy ingeniero de software con más de 5 años de experiencia, especializado en el diseño y desarrollo de plataformas de automatización de redes y sistemas inteligentes basados en inteligencia artificial. He construido soluciones enterprise completas que integran agentes de IA multimodales con infraestructura de red, abarcando desde backends de alto rendimiento con FastAPI y PostgreSQL hasta interfaces conversacionales con React, pasando por arquitecturas de microservicios orquestadas con Docker y Kubernetes en Google Cloud Platform. Mi experiencia abarca el ciclo completo de desarrollo: arquitecturas hexagonales y microservicios, pipelines de RAG con LangChain y ChromaDB, sistemas multi-agente con OpenAI Agents SDK, e integración de herramientas como Netmiko, NAPALM y Ansible para gestión de dispositivos de red multi-vendor. Me apasiona resolver problemas complejos donde la IA y la ingeniería de software convergen, siempre con enfoque en Clean Architecture, seguridad robusta y despliegues containerizados listos para producción.',
+        'Soy desarrollador de software con más de 5 años de experiencia, especializado en el diseño y desarrollo de plataformas de automatización de redes y sistemas inteligentes basados en inteligencia artificial. He construido soluciones enterprise completas que integran agentes de IA multimodales con infraestructura de red, abarcando desde backends de alto rendimiento con FastAPI y PostgreSQL hasta interfaces conversacionales con React, pasando por arquitecturas de microservicios orquestadas con Docker y Kubernetes en Google Cloud Platform. Mi experiencia abarca el ciclo completo de desarrollo: arquitecturas hexagonales y microservicios, pipelines de RAG con LangChain y ChromaDB, sistemas multi-agente con OpenAI Agents SDK, e integración de herramientas como Netmiko, NAPALM y Ansible para gestión de dispositivos de red multi-vendor. Me apasiona resolver problemas complejos donde la IA y la ingeniería de software convergen, siempre con enfoque en Clean Architecture, seguridad robusta y despliegues containerizados listos para producción.',
       experience: 'Experiencia',
       yearsExperience: 'Años de experiencia',
       projectsCompleted: 'Proyectos completados',

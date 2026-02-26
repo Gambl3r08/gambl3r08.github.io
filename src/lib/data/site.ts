@@ -2,11 +2,11 @@ import type { SiteData } from '$lib/types';
 
 export const siteData: SiteData = {
 	name: 'Roberto Lozada',
-	title: 'Ingeniero de Software',
+	title: 'Desarrollador de Software',
 	description:
 		'Especializado en automatización de redes y sistemas inteligentes con IA. +5 años de experiencia.',
 	aboutDescription:
-		'Ingeniero de software con más de 5 años de experiencia en automatización de redes y sistemas de IA.',
+		'Desarrollador de software con más de 5 años de experiencia en automatización de redes y sistemas de IA.',
 	skills: [
 		'Python',
 		'FastAPI',

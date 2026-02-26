@@ -4,14 +4,12 @@
 
 <button
 	onclick={() => language.toggle()}
-	class="flex items-center gap-1 rounded-lg border border-gray-200 px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100"
+	class="flex items-center gap-1 rounded-lg border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-sm font-medium text-muted transition-colors hover:border-white/[0.15] hover:text-heading"
 	aria-label="Cambiar idioma"
 >
 	{#if $language === 'es'}
-		<span>🇪🇸</span>
 		<span>ES</span>
 	{:else}
-		<span>🇺🇸</span>
 		<span>EN</span>
 	{/if}
 </button>
