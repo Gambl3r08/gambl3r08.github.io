@@ -63,7 +63,7 @@
 		width: 48px;
 		height: 26px;
 		border-radius: 13px;
-		background: linear-gradient(135deg, #fbbf24, #f59e0b);
+		background: linear-gradient(135deg, var(--accent-light), var(--accent));
 		border: 1px solid rgba(0, 0, 0, 0.1);
 		transition: background 0.4s ease, border-color 0.4s ease;
 	}
@@ -108,7 +108,7 @@
 	}
 
 	.sun {
-		color: #f59e0b;
+		color: var(--accent);
 	}
 
 	.moon {

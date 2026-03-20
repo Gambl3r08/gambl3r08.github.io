@@ -19,6 +19,8 @@
 					document.documentElement.classList.add('dark');
 					document.documentElement.style.colorScheme = 'dark';
 				}
+				var p = localStorage.getItem('palette');
+				if (p) document.documentElement.setAttribute('data-palette', p);
 			})();
 		</script>
 		%sveltekit.head%

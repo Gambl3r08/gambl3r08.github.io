@@ -6,6 +6,7 @@
 	import CursorGlow from '$lib/components/CursorGlow.svelte';
 	import { language } from '$lib/i18n';
 	import { theme } from '$lib/stores/theme';
+	import { palette } from '$lib/stores/palette';
 	import { onMount } from 'svelte';
 	import { onNavigate } from '$app/navigation';
 
@@ -18,6 +19,7 @@
 	onMount(() => {
 		language.init();
 		theme.init();
+		palette.init();
 	});
 
 	// View Transitions API
@@ -46,15 +48,15 @@
 	<div class="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
 		<div
 			class="absolute -left-32 top-1/4 h-96 w-96 rounded-full blur-[120px]"
-			style="background: radial-gradient(circle, #f59e0b, transparent); opacity: var(--orb-opacity-1)"
+			style="background: radial-gradient(circle, var(--accent), transparent); opacity: var(--orb-opacity-1)"
 		></div>
 		<div
 			class="absolute -right-32 top-2/3 h-80 w-80 rounded-full blur-[120px]"
-			style="background: radial-gradient(circle, #f97316, transparent); opacity: var(--orb-opacity-2)"
+			style="background: radial-gradient(circle, var(--accent-secondary), transparent); opacity: var(--orb-opacity-2)"
 		></div>
 		<div
 			class="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full blur-[120px]"
-			style="background: radial-gradient(circle, #fbbf24, transparent); opacity: var(--orb-opacity-3)"
+			style="background: radial-gradient(circle, var(--accent-light), transparent); opacity: var(--orb-opacity-3)"
 		></div>
 	</div>
 

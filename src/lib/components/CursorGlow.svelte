@@ -36,7 +36,7 @@
 		style="
 			left: {x - 200}px;
 			top: {y - 200}px;
-			background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
+			background: radial-gradient(circle, rgba(var(--accent-rgb), 0.05) 0%, transparent 70%);
 		"
 		aria-hidden="true"
 	></div>

@@ -3,6 +3,7 @@
 	import { t } from '$lib/i18n';
 	import LanguageSelector from './LanguageSelector.svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
+	import PaletteSelector from './PaletteSelector.svelte';
 
 	let isMenuOpen = $state(false);
 
@@ -69,6 +70,9 @@
 					</a>
 				{/each}
 				<div class="ml-2">
+					<PaletteSelector />
+				</div>
+				<div class="ml-1">
 					<ThemeToggle />
 				</div>
 				<div class="ml-1">
@@ -78,6 +82,7 @@
 
 			<!-- Mobile Menu Button -->
 			<div class="flex items-center gap-2 md:hidden">
+				<PaletteSelector />
 				<ThemeToggle />
 				<LanguageSelector />
 				<button

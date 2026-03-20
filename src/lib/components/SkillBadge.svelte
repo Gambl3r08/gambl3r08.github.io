@@ -28,6 +28,6 @@
 
 <style>
 	span:hover {
-		box-shadow: 0 0 12px rgba(245, 158, 11, 0.15);
+		box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.15);
 	}
 </style>

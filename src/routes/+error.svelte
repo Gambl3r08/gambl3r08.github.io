@@ -8,7 +8,7 @@
 		<!-- Large 404 with animated gradient -->
 		<h1
 			class="mb-4 font-heading text-[8rem] font-bold leading-none md:text-[10rem]"
-			style="background: linear-gradient(135deg, #f59e0b, #f97316, #fbbf24, #f59e0b);
+			style="background: linear-gradient(135deg, var(--accent), var(--accent-secondary), var(--accent-light), var(--accent));
 				background-size: 300% 300%;
 				animation: gradientMove 6s ease infinite;
 				-webkit-background-clip: text;
