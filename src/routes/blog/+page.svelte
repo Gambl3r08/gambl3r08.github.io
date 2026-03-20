@@ -21,15 +21,17 @@
 		[...new Set(langPosts.flatMap((p) => p.tags || []))]
 	);
 
-	// Filter by search and tag
+	// Filter by search and tag, sorted newest first
 	let filteredPosts = $derived(
-		langPosts.filter((post) => {
-			const matchesTag = !activeTag || (post.tags && post.tags.includes(activeTag));
-			const matchesSearch = !searchQuery ||
-				post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-				post.description.toLowerCase().includes(searchQuery.toLowerCase());
-			return matchesTag && matchesSearch;
-		})
+		langPosts
+			.filter((post) => {
+				const matchesTag = !activeTag || (post.tags && post.tags.includes(activeTag));
+				const matchesSearch = !searchQuery ||
+					post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+					post.description.toLowerCase().includes(searchQuery.toLowerCase());
+				return matchesTag && matchesSearch;
+			})
+			.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 	);
 
 	function formatDate(dateString: string): string {
