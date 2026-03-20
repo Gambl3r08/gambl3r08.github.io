@@ -43,18 +43,7 @@
 
 		{#if filteredPosts && filteredPosts.length > 0}
 			<div class="grid gap-8">
-<<<<<<< HEAD
-				{#each filteredPosts as post}
-					<article class="card">
-						<a href="/blog/{post.slug}" class="block">
-							<h2
-								class="mb-2 text-2xl font-semibold text-primary hover:text-primary-600"
-							>
-								{post.title}
-							</h2>
-							<p class="text-secondary mb-4">{post.description}</p>
-=======
-				{#each data.posts as post, i}
+				{#each filteredPosts as post, i}
 					<article class="card reveal" use:reveal={{ delay: i * 100 }}>
 						<a href="/blog/{post.slug}" class="block group">
 							<div class="mb-2 flex items-start gap-3">
@@ -70,7 +59,6 @@
 								</h2>
 							</div>
 							<p class="mb-4 text-muted pl-11">{post.description}</p>
->>>>>>> bebba8c9453b4090f188d8c985f76ac9cfc3938d
 							<div
 								class="flex flex-wrap items-center gap-4 text-sm text-muted pl-11"
 							>
