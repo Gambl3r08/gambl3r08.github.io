@@ -2,10 +2,12 @@
 	import '../app.css';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import Footer from '$lib/components/Footer.svelte';
+	import BackToTop from '$lib/components/BackToTop.svelte';
+	import CursorGlow from '$lib/components/CursorGlow.svelte';
 	import { language } from '$lib/i18n';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-	import { fly } from 'svelte/transition';
+	import { onNavigate } from '$app/navigation';
 
 	interface Props {
 		children: import('svelte').Snippet;
@@ -16,7 +18,27 @@
 	onMount(() => {
 		language.init();
 	});
+
+	// View Transitions API
+	onNavigate((navigation) => {
+		if (!document.startViewTransition) return;
+
+		return new Promise((resolve) => {
+			document.startViewTransition(async () => {
+				resolve();
+				await navigation.complete;
+			});
+		});
+	});
 </script>
+
+<!-- Skip to content -->
+<a
+	href="#main-content"
+	class="skip-link"
+>
+	Skip to content
+</a>
 
 <div class="relative flex min-h-screen flex-col bg-base">
 	<!-- Ambient glow orbs -->
@@ -35,13 +57,46 @@
 		></div>
 	</div>
 
+	<!-- Noise texture overlay -->
+	<div class="pointer-events-none fixed inset-0 z-[1] opacity-[0.03]" aria-hidden="true">
+		<svg width="100%" height="100%">
+			<filter id="noise">
+				<feTurbulence type="fractalNoise" baseFrequency="0.80" numOctaves="4" stitchTiles="stitch" />
+			</filter>
+			<rect width="100%" height="100%" filter="url(#noise)" />
+		</svg>
+	</div>
+
 	<Navbar />
-	<main class="relative flex-1">
-		{#key $page.url.pathname}
-			<div in:fly={{ y: 8, duration: 300, delay: 150 }}>
-				{@render children()}
-			</div>
-		{/key}
+	<main id="main-content" class="relative z-[2] flex-1">
+		{@render children()}
 	</main>
 	<Footer />
+	<BackToTop />
+	<CursorGlow />
 </div>
+
+<style>
+	/* View Transitions */
+	@keyframes fade-in {
+		from { opacity: 0; }
+	}
+	@keyframes fade-out {
+		to { opacity: 0; }
+	}
+	@keyframes slide-from-right {
+		from { transform: translateX(16px); }
+	}
+	@keyframes slide-to-left {
+		to { transform: translateX(-16px); }
+	}
+
+	:root::view-transition-old(root) {
+		animation: 150ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+			200ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+	}
+	:root::view-transition-new(root) {
+		animation: 210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+			300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+	}
+</style>

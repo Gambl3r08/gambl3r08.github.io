@@ -7,6 +7,7 @@ export interface PostMetadata {
 	lang: 'es' | 'en';
 	image?: string;
 	slug?: string;
+	readingTime?: number;
 }
 
 export interface Post {

@@ -1,16 +1,49 @@
 <script lang="ts">
+	import SEOHead from '$lib/components/SEOHead.svelte';
 	import { siteData } from '$lib/data/site';
 	import { t } from '$lib/i18n';
 	import { reveal } from '$lib/utils/scrollReveal';
+	import { onMount } from 'svelte';
+
+	// Terminal typewriter effect
+	const terminalLines = [
+		'$ python main.py',
+		'> Loading AI agents...',
+		'> Connecting to network devices...',
+		'> Running automation pipeline...',
+		'✓ All systems operational'
+	];
+	let visibleLines = $state<string[]>([]);
+	let currentLine = $state(0);
+	let currentChar = $state(0);
+	let typingText = $state('');
+
+	onMount(() => {
+		const typeInterval = setInterval(() => {
+			if (currentLine >= terminalLines.length) {
+				clearInterval(typeInterval);
+				return;
+			}
+			const line = terminalLines[currentLine];
+			if (currentChar < line.length) {
+				typingText += line[currentChar];
+				currentChar++;
+			} else {
+				visibleLines = [...visibleLines, typingText];
+				typingText = '';
+				currentChar = 0;
+				currentLine++;
+			}
+		}, 40);
+
+		return () => clearInterval(typeInterval);
+	});
 </script>
 
-<svelte:head>
-	<title>{siteData.name} | {$t.home.title}</title>
-	<meta
-		name="description"
-		content="Portfolio de {siteData.name} - {$t.home.title}"
-	/>
-</svelte:head>
+<SEOHead
+	title="{siteData.name} | {$t.home.title}"
+	description={$t.home.description}
+/>
 
 <section class="relative flex min-h-[calc(100vh-4rem)] items-center overflow-hidden px-4">
 	<!-- Background grid pattern -->
@@ -47,34 +80,34 @@
 				</div>
 			</div>
 
+			<!-- Terminal animation -->
 			<div class="flex flex-1 justify-center">
 				<div class="reveal-scale" use:reveal={{ delay: 200 }}>
-					<div class="relative flex h-72 w-72 items-center justify-center md:h-80 md:w-80">
-						<!-- Outer rotating ring -->
-						<div
-							class="absolute inset-0 rounded-full border border-accent/20"
-							style="animation: spin 20s linear infinite"
-						></div>
-						<!-- Middle rotating ring (opposite direction) -->
-						<div
-							class="absolute inset-4 rounded-full border border-violet/15"
-							style="animation: spin 15s linear infinite reverse"
-						></div>
-						<!-- Inner ring -->
-						<div
-							class="absolute inset-8 rounded-full border border-accent/10"
-							style="animation: spin 25s linear infinite"
-						></div>
-
-						<!-- Central orb -->
-						<div class="relative flex h-32 w-32 items-center justify-center rounded-full" style="background: radial-gradient(circle, rgba(99, 102, 241, 0.15), transparent)">
-							<span class="font-heading text-4xl font-bold bg-gradient-to-br from-accent-light to-violet bg-clip-text text-transparent">&lt;/&gt;</span>
+					<div class="w-72 md:w-80 overflow-hidden rounded-xl border border-white/[0.08]" style="background: rgba(13, 17, 23, 0.9); backdrop-filter: blur(12px)">
+						<!-- Terminal header -->
+						<div class="flex items-center gap-2 border-b border-white/[0.06] px-4 py-3">
+							<div class="h-3 w-3 rounded-full bg-red-500/70"></div>
+							<div class="h-3 w-3 rounded-full bg-yellow-500/70"></div>
+							<div class="h-3 w-3 rounded-full bg-green-500/70"></div>
+							<span class="ml-2 text-xs text-muted">terminal</span>
 						</div>
-
-						<!-- Floating dots -->
-						<div class="absolute top-4 right-8 h-2 w-2 rounded-full bg-accent/40 animate-float"></div>
-						<div class="absolute bottom-8 left-4 h-1.5 w-1.5 rounded-full bg-violet/40 animate-float" style="animation-delay: 2s"></div>
-						<div class="absolute top-1/2 right-2 h-1 w-1 rounded-full bg-accent-light/30 animate-float" style="animation-delay: 4s"></div>
+						<!-- Terminal body -->
+						<div class="p-4 font-mono text-sm leading-relaxed" style="min-height: 180px">
+							{#each visibleLines as line}
+								<div class="{line.startsWith('✓') ? 'text-green-400' : line.startsWith('>') ? 'text-accent-light' : 'text-body'}">
+									{line}
+								</div>
+							{/each}
+							{#if typingText}
+								<div class="{typingText.startsWith('✓') ? 'text-green-400' : typingText.startsWith('>') ? 'text-accent-light' : 'text-body'}">
+									{typingText}<span class="inline-block w-2 h-4 ml-0.5 bg-accent-light animate-pulse align-middle"></span>
+								</div>
+							{:else if currentLine >= terminalLines.length}
+								<div class="text-body mt-1">
+									$ <span class="inline-block w-2 h-4 ml-0.5 bg-accent-light animate-pulse align-middle"></span>
+								</div>
+							{/if}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -83,10 +116,6 @@
 </section>
 
 <style>
-	@keyframes spin {
-		from { transform: rotate(0deg); }
-		to { transform: rotate(360deg); }
-	}
 	@keyframes gradientShift {
 		0%, 100% { background-position: 0% 50%; }
 		50% { background-position: 100% 50%; }

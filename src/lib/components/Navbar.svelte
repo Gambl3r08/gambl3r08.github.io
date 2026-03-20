@@ -24,6 +24,8 @@
 </script>
 
 <nav
+	role="navigation"
+	aria-label="Main navigation"
 	class="sticky top-0 z-50 border-b border-white/[0.06]"
 	style="background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px)"
 >
@@ -44,6 +46,7 @@
 						class="relative flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium transition-colors rounded-full {$page.url.pathname === link.href
 							? 'text-accent-light bg-accent/10'
 							: 'text-muted hover:text-heading'}"
+						aria-current={$page.url.pathname === link.href ? 'page' : undefined}
 					>
 						{#if link.icon === 'home'}
 							<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955a1.126 1.126 0 0 1 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>
@@ -72,7 +75,13 @@
 			<!-- Mobile Menu Button -->
 			<div class="flex items-center gap-2 md:hidden">
 				<LanguageSelector />
-				<button class="p-2" onclick={toggleMenu} aria-label="Toggle menu">
+				<button
+					class="p-2"
+					onclick={toggleMenu}
+					aria-label="Toggle menu"
+					aria-expanded={isMenuOpen}
+					aria-controls="mobile-menu"
+				>
 					<div class="flex h-5 w-6 flex-col justify-between">
 						<span
 							class="block h-0.5 w-full bg-accent-light transition-transform {isMenuOpen
@@ -96,7 +105,7 @@
 
 		<!-- Mobile Navigation -->
 		{#if isMenuOpen}
-			<div class="border-t border-white/[0.06] py-4 md:hidden">
+			<div id="mobile-menu" class="border-t border-white/[0.06] py-4 md:hidden" role="menu">
 				{#each navLinks as link}
 					<a
 						href={link.href}
@@ -104,6 +113,8 @@
 							? 'text-accent-light bg-accent/10'
 							: 'text-muted hover:text-heading'}"
 						onclick={closeMenu}
+						role="menuitem"
+						aria-current={$page.url.pathname === link.href ? 'page' : undefined}
 					>
 						{#if link.icon === 'home'}
 							<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955a1.126 1.126 0 0 1 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg>

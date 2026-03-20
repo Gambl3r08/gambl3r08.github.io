@@ -11,6 +11,19 @@
 		@apply bg-base text-body;
 	}
 
+	/* Skip to content link */
+	.skip-link {
+		@apply fixed left-4 top-4 z-[100] rounded-lg px-4 py-2 text-sm font-medium text-heading;
+		background: rgba(30, 41, 59, 0.95);
+		backdrop-filter: blur(12px);
+		border: 1px solid rgba(99, 102, 241, 0.3);
+		transform: translateY(-200%);
+		transition: transform 0.2s ease;
+	}
+	.skip-link:focus {
+		transform: translateY(0);
+	}
+
 	/* Custom scrollbar */
 	::-webkit-scrollbar {
 		width: 8px;

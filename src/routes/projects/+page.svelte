@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SEOHead from '$lib/components/SEOHead.svelte';
 	import { siteData } from '$lib/data/site';
 	import { t } from '$lib/i18n';
 	import RepoCard from '$lib/components/RepoCard.svelte';
@@ -8,13 +9,10 @@
 	let { data }: { data: PageData } = $props();
 </script>
 
-<svelte:head>
-	<title>{$t.projects.title} | {siteData.name}</title>
-	<meta
-		name="description"
-		content="{$t.projects.title} - {siteData.name}"
-	/>
-</svelte:head>
+<SEOHead
+	title="{$t.projects.title} | {siteData.name}"
+	description={$t.projects.description}
+/>
 
 <section class="px-4 py-16">
 	<div class="mx-auto max-w-6xl">

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import SEOHead from '$lib/components/SEOHead.svelte';
 	import { siteData } from '$lib/data/site';
 	import { t, language } from '$lib/i18n';
 	import { reveal } from '$lib/utils/scrollReveal';
@@ -6,9 +7,29 @@
 
 	let { data }: { data: PageData } = $props();
 
-	// Filtrar posts por idioma actual
-	let filteredPosts = $derived(
+	// Search and filter state
+	let searchQuery = $state('');
+	let activeTag = $state('');
+
+	// Filter posts by current language
+	let langPosts = $derived(
 		data.posts.filter((post) => post.lang === $language)
+	);
+
+	// Extract unique tags
+	let allTags = $derived(
+		[...new Set(langPosts.flatMap((p) => p.tags || []))]
+	);
+
+	// Filter by search and tag
+	let filteredPosts = $derived(
+		langPosts.filter((post) => {
+			const matchesTag = !activeTag || (post.tags && post.tags.includes(activeTag));
+			const matchesSearch = !searchQuery ||
+				post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+				post.description.toLowerCase().includes(searchQuery.toLowerCase());
+			return matchesTag && matchesSearch;
+		})
 	);
 
 	function formatDate(dateString: string): string {
@@ -21,13 +42,10 @@
 	}
 </script>
 
-<svelte:head>
-	<title>{$t.blog.title} | {siteData.name}</title>
-	<meta
-		name="description"
-		content="{$t.blog.description}"
-	/>
-</svelte:head>
+<SEOHead
+	title="{$t.blog.title} | {siteData.name}"
+	description={$t.blog.description}
+/>
 
 <section class="px-4 py-16">
 	<div class="mx-auto max-w-4xl">
@@ -36,10 +54,52 @@
 		</div>
 
 		<div class="reveal" use:reveal={{ delay: 100 }}>
-			<p class="mx-auto mb-12 max-w-2xl text-center text-lg text-muted">
+			<p class="mx-auto mb-8 max-w-2xl text-center text-lg text-muted">
 				{$t.blog.description}
 			</p>
 		</div>
+
+		<!-- Search + Tag Filters -->
+		{#if langPosts.length > 0}
+			<div class="reveal mb-8 space-y-4" use:reveal={{ delay: 150 }}>
+				<!-- Search input -->
+				<div class="relative mx-auto max-w-md">
+					<svg class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+					</svg>
+					<input
+						type="text"
+						bind:value={searchQuery}
+						placeholder={$t.blog.searchPlaceholder}
+						class="w-full rounded-lg border border-white/[0.08] bg-white/[0.04] py-2.5 pl-10 pr-4 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30 focus:bg-white/[0.06]"
+					/>
+				</div>
+
+				<!-- Tag pills -->
+				{#if allTags.length > 0}
+					<div class="flex flex-wrap justify-center gap-2">
+						<button
+							onclick={() => activeTag = ''}
+							class="rounded-full border px-3 py-1 text-sm transition-all {!activeTag
+								? 'border-accent/30 bg-accent/10 text-accent-light'
+								: 'border-white/[0.08] text-muted hover:border-white/[0.15] hover:text-heading'}"
+						>
+							{$t.blog.allTags}
+						</button>
+						{#each allTags as tag}
+							<button
+								onclick={() => activeTag = activeTag === tag ? '' : tag}
+								class="rounded-full border px-3 py-1 text-sm transition-all {activeTag === tag
+									? 'border-accent/30 bg-accent/10 text-accent-light'
+									: 'border-white/[0.08] text-muted hover:border-white/[0.15] hover:text-heading'}"
+							>
+								{tag}
+							</button>
+						{/each}
+					</div>
+				{/if}
+			</div>
+		{/if}
 
 		{#if filteredPosts && filteredPosts.length > 0}
 			<div class="grid gap-8">
@@ -70,6 +130,14 @@
 										{formatDate(post.date)}
 									</time>
 								</span>
+								{#if post.readingTime}
+									<span class="flex items-center gap-1.5">
+										<svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+										</svg>
+										{post.readingTime} {$t.blog.minRead}
+									</span>
+								{/if}
 								{#if post.tags && post.tags.length > 0}
 									<div class="flex gap-2">
 										{#each post.tags.slice(0, 3) as tag}
@@ -87,6 +155,10 @@
 						</a>
 					</article>
 				{/each}
+			</div>
+		{:else if langPosts.length > 0}
+			<div class="text-center">
+				<p class="text-lg text-muted">{$t.blog.noResults}</p>
 			</div>
 		{:else}
 			<div class="text-center">

@@ -1,11 +1,15 @@
 <script lang="ts">
 	import { language } from '$lib/i18n';
+
+	let ariaLabel = $derived(
+		$language === 'es' ? 'Switch to English' : 'Cambiar a Español'
+	);
 </script>
 
 <button
 	onclick={() => language.toggle()}
 	class="flex items-center gap-1 rounded-lg border border-white/[0.08] bg-white/[0.04] px-3 py-1.5 text-sm font-medium text-muted transition-colors hover:border-white/[0.15] hover:text-heading"
-	aria-label="Cambiar idioma"
+	aria-label={ariaLabel}
 >
 	{#if $language === 'es'}
 		<span>ES</span>

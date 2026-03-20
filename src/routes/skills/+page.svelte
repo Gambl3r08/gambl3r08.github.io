@@ -1,17 +1,15 @@
 <script lang="ts">
+	import SEOHead from '$lib/components/SEOHead.svelte';
 	import { siteData } from '$lib/data/site';
 	import { t } from '$lib/i18n';
 	import SkillBadge from '$lib/components/SkillBadge.svelte';
 	import { reveal } from '$lib/utils/scrollReveal';
 </script>
 
-<svelte:head>
-	<title>{$t.skills.title} | {siteData.name}</title>
-	<meta
-		name="description"
-		content="{$t.skills.title} - {siteData.name}"
-	/>
-</svelte:head>
+<SEOHead
+	title="{$t.skills.title} | {siteData.name}"
+	description="{$t.skills.title} - {siteData.name}"
+/>
 
 <section class="px-4 py-16">
 	<div class="mx-auto max-w-4xl">

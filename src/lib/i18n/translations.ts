@@ -27,7 +27,13 @@ export const translations = {
       experience: 'Experiencia',
       yearsExperience: 'Años de experiencia',
       projectsCompleted: 'Proyectos completados',
-      technologiesMastered: 'Tecnologías dominadas'
+      technologiesMastered: 'Tecnologías dominadas',
+      location: 'Ubicación',
+      locationValue: 'Barranquilla, Colombia',
+      focus: 'Enfoque',
+      focusValue: 'IA & Automatización de Redes',
+      techStack: 'Tech Stack Principal',
+      techStackItems: ['Python', 'FastAPI', 'OpenAI Agents', 'Docker', 'Kubernetes', 'GCP']
     },
     // Projects
     projects: {
@@ -70,7 +76,11 @@ export const translations = {
       description:
         'Artículos sobre desarrollo backend, buenas prácticas, tecnologías cloud y más.',
       noPosts: 'Aún no hay artículos publicados. ¡Vuelve pronto!',
-      backToBlog: '← Volver al blog'
+      backToBlog: '← Volver al blog',
+      minRead: 'min de lectura',
+      searchPlaceholder: 'Buscar artículos...',
+      allTags: 'Todos',
+      noResults: 'No se encontraron artículos con esos filtros.'
     },
     // Contact
     contact: {
@@ -79,16 +89,28 @@ export const translations = {
         '¿Tienes un proyecto en mente o quieres colaborar? No dudes en contactarme. Estaré encantado de escucharte.',
       email: 'Email',
       location: 'Ubicación',
-      followMe: 'Sígueme en redes'
+      followMe: 'Sígueme en redes',
+      name: 'Nombre',
+      message: 'Mensaje',
+      send: 'Enviar mensaje',
+      sending: 'Enviando...',
+      success: '¡Mensaje enviado correctamente!',
+      errorSend: 'Error al enviar. Intenta de nuevo.'
     },
     // Footer
     footer: {
-      rights: 'Todos los derechos reservados.'
+      rights: 'Todos los derechos reservados.',
+      builtWith: 'Hecho con SvelteKit & Tailwind CSS'
     },
     // Error
     error: {
       notFound: 'Página no encontrada',
-      backHome: 'Volver al inicio'
+      backHome: 'Volver al inicio',
+      title: '404',
+      subtitle: 'Oops! Esta página se perdió en el void',
+      description: 'Parece que la página que buscas no existe o fue movida.',
+      goProjects: 'Ver Proyectos',
+      goBlog: 'Leer Blog'
     }
   },
   en: {
@@ -119,7 +141,13 @@ export const translations = {
       experience: 'Experience',
       yearsExperience: 'Years of experience',
       projectsCompleted: 'Projects completed',
-      technologiesMastered: 'Technologies mastered'
+      technologiesMastered: 'Technologies mastered',
+      location: 'Location',
+      locationValue: 'Barranquilla, Colombia',
+      focus: 'Focus',
+      focusValue: 'AI & Network Automation',
+      techStack: 'Main Tech Stack',
+      techStackItems: ['Python', 'FastAPI', 'OpenAI Agents', 'Docker', 'Kubernetes', 'GCP']
     },
     // Projects
     projects: {
@@ -162,7 +190,11 @@ export const translations = {
       description:
         'Articles about backend development, best practices, cloud technologies and more.',
       noPosts: 'No articles published yet. Come back soon!',
-      backToBlog: '← Back to blog'
+      backToBlog: '← Back to blog',
+      minRead: 'min read',
+      searchPlaceholder: 'Search articles...',
+      allTags: 'All',
+      noResults: 'No articles found matching those filters.'
     },
     // Contact
     contact: {
@@ -171,16 +203,28 @@ export const translations = {
         "Have a project in mind or want to collaborate? Don't hesitate to contact me. I'd be happy to hear from you.",
       email: 'Email',
       location: 'Location',
-      followMe: 'Follow me on social media'
+      followMe: 'Follow me on social media',
+      name: 'Name',
+      message: 'Message',
+      send: 'Send message',
+      sending: 'Sending...',
+      success: 'Message sent successfully!',
+      errorSend: 'Error sending. Please try again.'
     },
     // Footer
     footer: {
-      rights: 'All rights reserved.'
+      rights: 'All rights reserved.',
+      builtWith: 'Built with SvelteKit & Tailwind CSS'
     },
     // Error
     error: {
       notFound: 'Page not found',
-      backHome: 'Back to home'
+      backHome: 'Back to home',
+      title: '404',
+      subtitle: "Oops! This page got lost in the void",
+      description: "The page you're looking for doesn't exist or has been moved.",
+      goProjects: 'View Projects',
+      goBlog: 'Read Blog'
     }
   }
 } as const;
