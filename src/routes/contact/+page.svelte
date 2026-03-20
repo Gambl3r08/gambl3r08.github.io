@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { siteData } from '$lib/data/site';
 	import { t } from '$lib/i18n';
+	import { reveal } from '$lib/utils/scrollReveal';
 </script>
 
 <svelte:head>
@@ -8,35 +9,50 @@
 	<meta name="description" content="{$t.contact.title} - {siteData.name}" />
 </svelte:head>
 
-<section class="animate-fade-in px-4 py-16">
+<section class="px-4 py-16">
 	<div class="mx-auto max-w-4xl text-center">
-		<h1 class="section-title">{$t.contact.title}</h1>
+		<div class="reveal" use:reveal>
+			<h1 class="section-title">{$t.contact.title}</h1>
+		</div>
 
-		<p class="text-secondary mx-auto mb-12 max-w-2xl text-lg">
-			{$t.contact.description}
-		</p>
+		<div class="reveal" use:reveal={{ delay: 100 }}>
+			<p class="mx-auto mb-12 max-w-2xl text-lg text-muted">
+				{$t.contact.description}
+			</p>
+		</div>
 
 		<div class="mx-auto grid max-w-2xl gap-6 md:grid-cols-2">
-			<div class="card">
-				<div class="mb-4 text-4xl">📧</div>
-				<h3 class="mb-2 font-semibold">{$t.contact.email}</h3>
+			<div class="card reveal group" use:reveal={{ delay: 200 }}>
+				<div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10">
+					<svg class="h-7 w-7 text-accent-light" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+					</svg>
+				</div>
+				<h3 class="mb-2 font-semibold text-heading">{$t.contact.email}</h3>
 				<a
 					href="mailto:{siteData.contact.email}"
-					class="text-primary hover:underline"
+					class="text-accent-light transition-colors hover:text-accent"
 				>
 					{siteData.contact.email}
 				</a>
 			</div>
-			<div class="card">
-				<div class="mb-4 text-4xl">📍</div>
-				<h3 class="mb-2 font-semibold">{$t.contact.location}</h3>
-				<p class="text-secondary">{siteData.contact.address}</p>
+			<div class="card reveal group" use:reveal={{ delay: 300 }}>
+				<div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-violet/10">
+					<svg class="h-7 w-7 text-violet" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+						<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+					</svg>
+				</div>
+				<h3 class="mb-2 font-semibold text-heading">{$t.contact.location}</h3>
+				<p class="text-muted">{siteData.contact.address}</p>
 			</div>
 		</div>
 
 		<div class="mt-12">
-			<h2 class="mb-6 text-2xl font-semibold">{$t.contact.followMe}</h2>
-			<div class="flex justify-center gap-6">
+			<div class="reveal" use:reveal={{ delay: 400 }}>
+				<h2 class="mb-6 text-2xl font-semibold text-heading font-heading">{$t.contact.followMe}</h2>
+			</div>
+			<div class="reveal flex justify-center gap-6" use:reveal={{ delay: 500 }}>
 				<a
 					href="https://github.com/{siteData.contact.github}"
 					target="_blank"
