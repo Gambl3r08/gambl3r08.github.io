@@ -11,10 +11,11 @@
 	let searchQuery = $state('');
 	let activeTag = $state('');
 
-	// Filter posts by current language
-	let langPosts = $derived(
-		data.posts.filter((post) => post.lang === $language)
-	);
+	// Filter posts by current language, fallback to all if none match
+	let langPosts = $derived.by(() => {
+		const matched = data.posts.filter((post) => post.lang === $language);
+		return matched.length > 0 ? matched : data.posts;
+	});
 
 	// Extract unique tags
 	let allTags = $derived(

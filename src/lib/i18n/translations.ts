@@ -48,26 +48,32 @@ export const translations = {
     // Skills
     skills: {
       title: 'Habilidades',
-      specializations: 'Áreas de Especialización',
+      specializations: 'Tecnologías y herramientas que domino, organizadas por área de especialización.',
+      allTech: 'Todas las Tecnologías',
       backend: {
         title: 'AI & Multi-Agent Systems',
         description:
-          'Desarrollo de sistemas multi-agente con OpenAI Agents SDK, pipelines RAG con LangChain, ChromaDB y orquestación de LLMs.'
+          'Sistemas multi-agente, pipelines RAG y orquestación de LLMs.'
       },
       cloud: {
         title: 'Cloud & DevOps',
         description:
-          'Arquitecturas cloud-native en GCP y AWS. Docker, Kubernetes, CI/CD y despliegues containerizados en producción.'
+          'Arquitecturas cloud-native, containers y CI/CD.'
       },
       databases: {
         title: 'Network Automation',
         description:
-          'Automatización de redes multi-vendor con Netmiko, NAPALM, Scrapli y Ansible. Protocolos NETCONF y gestión de dispositivos.'
+          'Automatización multi-vendor y protocolos de red.'
       },
       frameworks: {
         title: 'Backend & Microservicios',
         description:
-          'FastAPI, PostgreSQL, Apache Kafka, Redis. Arquitecturas hexagonales, event-driven y Clean Architecture.'
+          'APIs de alto rendimiento y arquitecturas event-driven.'
+      },
+      languages: {
+        title: 'Lenguajes de Programación',
+        description:
+          'Lenguajes que manejo en proyectos reales.'
       }
     },
     // Blog
@@ -162,26 +168,32 @@ export const translations = {
     // Skills
     skills: {
       title: 'Skills',
-      specializations: 'Areas of Specialization',
+      specializations: 'Technologies and tools I master, organized by area of specialization.',
+      allTech: 'All Technologies',
       backend: {
         title: 'AI & Multi-Agent Systems',
         description:
-          'Development of multi-agent systems with OpenAI Agents SDK, RAG pipelines with LangChain, ChromaDB and LLM orchestration.'
+          'Multi-agent systems, RAG pipelines and LLM orchestration.'
       },
       cloud: {
         title: 'Cloud & DevOps',
         description:
-          'Cloud-native architectures on GCP and AWS. Docker, Kubernetes, CI/CD and production-ready containerized deployments.'
+          'Cloud-native architectures, containers and CI/CD.'
       },
       databases: {
         title: 'Network Automation',
         description:
-          'Multi-vendor network automation with Netmiko, NAPALM, Scrapli and Ansible. NETCONF protocols and device management.'
+          'Multi-vendor automation and network protocols.'
       },
       frameworks: {
         title: 'Backend & Microservices',
         description:
-          'FastAPI, PostgreSQL, Apache Kafka, Redis. Hexagonal architectures, event-driven and Clean Architecture patterns.'
+          'High-performance APIs and event-driven architectures.'
+      },
+      languages: {
+        title: 'Programming Languages',
+        description:
+          'Languages I use in real-world projects.'
       }
     },
     // Blog

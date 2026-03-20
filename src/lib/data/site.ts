@@ -9,6 +9,10 @@ export const siteData: SiteData = {
 		'Desarrollador de software con más de 5 años de experiencia en automatización de redes y sistemas de IA.',
 	skills: [
 		'Python',
+		'Go',
+		'Rust',
+		'.NET',
+		'TypeScript',
 		'FastAPI',
 		'OpenAI Agents SDK',
 		'LangChain',
