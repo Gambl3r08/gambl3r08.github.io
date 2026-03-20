@@ -1,11 +1,7 @@
 <script lang="ts">
 	import { siteData } from '$lib/data/site';
-<<<<<<< HEAD
 	import { t, language } from '$lib/i18n';
-=======
-	import { t } from '$lib/i18n';
 	import { reveal } from '$lib/utils/scrollReveal';
->>>>>>> bebba8c9453b4090f188d8c985f76ac9cfc3938d
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
