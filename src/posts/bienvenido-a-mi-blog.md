@@ -1,7 +1,7 @@
 ---
 title: "Bienvenido a mi Blog"
 description: "Primera entrada del blog donde comparto mi experiencia como desarrollador backend"
-date: "2024-01-15"
+date: "2026-03-20"
 published: true
 lang: es
 tags:
