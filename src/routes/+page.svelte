@@ -47,8 +47,8 @@
 
 <section class="relative flex min-h-[calc(100vh-4rem)] items-center overflow-hidden px-4">
 	<!-- Background grid pattern -->
-	<div class="pointer-events-none absolute inset-0 opacity-[0.03]" aria-hidden="true">
-		<div class="h-full w-full" style="background-image: linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px); background-size: 60px 60px"></div>
+	<div class="pointer-events-none absolute inset-0" style="opacity: var(--noise-opacity)" aria-hidden="true">
+		<div class="h-full w-full" style="background-image: linear-gradient(var(--color-muted) 1px, transparent 1px), linear-gradient(90deg, var(--color-muted) 1px, transparent 1px); background-size: 60px 60px; opacity: 0.15"></div>
 	</div>
 
 	<div class="mx-auto w-full max-w-6xl">
@@ -83,9 +83,9 @@
 			<!-- Terminal animation -->
 			<div class="flex flex-1 justify-center">
 				<div class="reveal-scale" use:reveal={{ delay: 200 }}>
-					<div class="w-72 md:w-80 overflow-hidden rounded-xl border border-white/[0.08]" style="background: rgba(13, 17, 23, 0.9); backdrop-filter: blur(12px)">
+					<div class="w-72 md:w-80 overflow-hidden rounded-xl" style="background: var(--terminal-bg); backdrop-filter: blur(12px); border: 1px solid var(--glass-border)">
 						<!-- Terminal header -->
-						<div class="flex items-center gap-2 border-b border-white/[0.06] px-4 py-3">
+						<div class="flex items-center gap-2 px-4 py-3" style="border-bottom: 1px solid var(--glass-border)">
 							<div class="h-3 w-3 rounded-full bg-red-500/70"></div>
 							<div class="h-3 w-3 rounded-full bg-yellow-500/70"></div>
 							<div class="h-3 w-3 rounded-full bg-green-500/70"></div>

@@ -7,7 +7,6 @@
 	let isTouch = $state(false);
 
 	onMount(() => {
-		// Disable on touch devices
 		isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 		if (isTouch) return;
 
@@ -37,7 +36,7 @@
 		style="
 			left: {x - 200}px;
 			top: {y - 200}px;
-			background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+			background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
 		"
 		aria-hidden="true"
 	></div>

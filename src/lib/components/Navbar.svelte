@@ -2,6 +2,7 @@
 	import { page } from '$app/stores';
 	import { t } from '$lib/i18n';
 	import LanguageSelector from './LanguageSelector.svelte';
+	import ThemeToggle from './ThemeToggle.svelte';
 
 	let isMenuOpen = $state(false);
 
@@ -26,8 +27,8 @@
 <nav
 	role="navigation"
 	aria-label="Main navigation"
-	class="sticky top-0 z-50 border-b border-white/[0.06]"
-	style="background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px)"
+	class="sticky top-0 z-50 border-b"
+	style="border-color: var(--glass-border); background: var(--navbar-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px)"
 >
 	<div class="mx-auto max-w-6xl px-4">
 		<div class="flex h-16 items-center justify-between">
@@ -67,13 +68,17 @@
 						{/if}
 					</a>
 				{/each}
-				<div class="ml-3">
+				<div class="ml-2">
+					<ThemeToggle />
+				</div>
+				<div class="ml-1">
 					<LanguageSelector />
 				</div>
 			</div>
 
 			<!-- Mobile Menu Button -->
 			<div class="flex items-center gap-2 md:hidden">
+				<ThemeToggle />
 				<LanguageSelector />
 				<button
 					class="p-2"
@@ -105,7 +110,7 @@
 
 		<!-- Mobile Navigation -->
 		{#if isMenuOpen}
-			<div id="mobile-menu" class="border-t border-white/[0.06] py-4 md:hidden" role="menu">
+			<div id="mobile-menu" class="py-4 md:hidden" style="border-top: 1px solid var(--glass-border)" role="menu">
 				{#each navLinks as link}
 					<a
 						href={link.href}

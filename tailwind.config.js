@@ -1,20 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./src/**/*.{html,js,svelte,ts,md,svx}'],
+	darkMode: 'class',
 	theme: {
 		extend: {
 			colors: {
-				base: '#0f172a',
-				surface: '#1e293b',
-				'surface-elevated': '#334155',
+				base: 'var(--color-base)',
+				surface: 'var(--color-surface)',
+				'surface-elevated': 'var(--color-surface-elevated)',
 				accent: {
 					DEFAULT: '#6366f1',
 					light: '#818cf8'
 				},
 				violet: '#8b5cf6',
-				heading: '#f1f5f9',
-				body: '#cbd5e1',
-				muted: '#94a3b8'
+				heading: 'var(--color-heading)',
+				body: 'var(--color-body)',
+				muted: 'var(--color-muted)'
 			},
 			fontFamily: {
 				sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],

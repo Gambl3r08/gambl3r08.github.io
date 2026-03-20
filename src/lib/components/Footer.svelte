@@ -15,7 +15,7 @@
 	] as const;
 </script>
 
-<footer class="relative py-10" style="background: rgba(30, 41, 59, 0.5)" role="contentinfo">
+<footer class="relative py-10" style="background: var(--footer-bg)" role="contentinfo">
 	<!-- Gradient accent line -->
 	<div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"></div>
 
@@ -83,7 +83,7 @@
 		</div>
 
 		<!-- Bottom bar -->
-		<div class="mt-8 flex flex-col items-center justify-between gap-2 border-t border-white/[0.06] pt-6 md:flex-row">
+		<div class="mt-8 flex flex-col items-center justify-between gap-2 pt-6 md:flex-row" style="border-top: 1px solid var(--glass-border)">
 			<p class="text-xs text-muted">
 				&copy; {currentYear} {siteData.name}. {$t.footer.rights}
 			</p>

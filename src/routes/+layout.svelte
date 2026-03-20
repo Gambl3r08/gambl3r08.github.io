@@ -5,7 +5,7 @@
 	import BackToTop from '$lib/components/BackToTop.svelte';
 	import CursorGlow from '$lib/components/CursorGlow.svelte';
 	import { language } from '$lib/i18n';
-	import { page } from '$app/stores';
+	import { theme } from '$lib/stores/theme';
 	import { onMount } from 'svelte';
 	import { onNavigate } from '$app/navigation';
 
@@ -17,6 +17,7 @@
 
 	onMount(() => {
 		language.init();
+		theme.init();
 	});
 
 	// View Transitions API
@@ -44,21 +45,21 @@
 	<!-- Ambient glow orbs -->
 	<div class="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden="true">
 		<div
-			class="absolute -left-32 top-1/4 h-96 w-96 rounded-full opacity-20 blur-[120px]"
-			style="background: radial-gradient(circle, #6366f1, transparent)"
+			class="absolute -left-32 top-1/4 h-96 w-96 rounded-full blur-[120px]"
+			style="background: radial-gradient(circle, #6366f1, transparent); opacity: var(--orb-opacity-1)"
 		></div>
 		<div
-			class="absolute -right-32 top-2/3 h-80 w-80 rounded-full opacity-15 blur-[120px]"
-			style="background: radial-gradient(circle, #8b5cf6, transparent)"
+			class="absolute -right-32 top-2/3 h-80 w-80 rounded-full blur-[120px]"
+			style="background: radial-gradient(circle, #8b5cf6, transparent); opacity: var(--orb-opacity-2)"
 		></div>
 		<div
-			class="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full opacity-10 blur-[120px]"
-			style="background: radial-gradient(circle, #818cf8, transparent)"
+			class="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full blur-[120px]"
+			style="background: radial-gradient(circle, #818cf8, transparent); opacity: var(--orb-opacity-3)"
 		></div>
 	</div>
 
 	<!-- Noise texture overlay -->
-	<div class="pointer-events-none fixed inset-0 z-[1] opacity-[0.03]" aria-hidden="true">
+	<div class="pointer-events-none fixed inset-0 z-[1]" style="opacity: var(--noise-opacity)" aria-hidden="true">
 		<svg width="100%" height="100%">
 			<filter id="noise">
 				<feTurbulence type="fractalNoise" baseFrequency="0.80" numOctaves="4" stitchTiles="stitch" />

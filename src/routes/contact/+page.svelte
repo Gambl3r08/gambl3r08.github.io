@@ -96,7 +96,8 @@
 							type="text"
 							bind:value={name}
 							required
-							class="w-full rounded-lg border border-white/[0.08] bg-white/[0.04] px-4 py-2.5 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30 focus:bg-white/[0.06]"
+							class="w-full rounded-lg px-4 py-2.5 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30"
+							style="border: 1px solid var(--input-border); background: var(--input-bg)"
 						/>
 					</div>
 					<div>
@@ -106,7 +107,8 @@
 							type="email"
 							bind:value={email}
 							required
-							class="w-full rounded-lg border border-white/[0.08] bg-white/[0.04] px-4 py-2.5 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30 focus:bg-white/[0.06]"
+							class="w-full rounded-lg px-4 py-2.5 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30"
+							style="border: 1px solid var(--input-border); background: var(--input-bg)"
 						/>
 					</div>
 					<div>
@@ -116,7 +118,8 @@
 							bind:value={message}
 							required
 							rows="4"
-							class="w-full resize-none rounded-lg border border-white/[0.08] bg-white/[0.04] px-4 py-2.5 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30 focus:bg-white/[0.06]"
+							class="w-full resize-none rounded-lg px-4 py-2.5 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30"
+							style="border: 1px solid var(--input-border); background: var(--input-bg)"
 						></textarea>
 					</div>
 					<button

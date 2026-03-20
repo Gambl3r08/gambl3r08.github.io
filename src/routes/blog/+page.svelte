@@ -71,7 +71,8 @@
 						type="text"
 						bind:value={searchQuery}
 						placeholder={$t.blog.searchPlaceholder}
-						class="w-full rounded-lg border border-white/[0.08] bg-white/[0.04] py-2.5 pl-10 pr-4 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30 focus:bg-white/[0.06]"
+						class="w-full rounded-lg py-2.5 pl-10 pr-4 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30"
+						style="border: 1px solid var(--input-border); background: var(--input-bg)"
 					/>
 				</div>
 
@@ -82,7 +83,7 @@
 							onclick={() => activeTag = ''}
 							class="rounded-full border px-3 py-1 text-sm transition-all {!activeTag
 								? 'border-accent/30 bg-accent/10 text-accent-light'
-								: 'border-white/[0.08] text-muted hover:border-white/[0.15] hover:text-heading'}"
+								: 'border-muted/20 text-muted hover:border-muted/40 hover:text-heading'}"
 						>
 							{$t.blog.allTags}
 						</button>
@@ -91,7 +92,7 @@
 								onclick={() => activeTag = activeTag === tag ? '' : tag}
 								class="rounded-full border px-3 py-1 text-sm transition-all {activeTag === tag
 									? 'border-accent/30 bg-accent/10 text-accent-light'
-									: 'border-white/[0.08] text-muted hover:border-white/[0.15] hover:text-heading'}"
+									: 'border-muted/20 text-muted hover:border-muted/40 hover:text-heading'}"
 							>
 								{tag}
 							</button>
