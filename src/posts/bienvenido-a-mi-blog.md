@@ -29,8 +29,8 @@ Trabajo principalmente con:
 
 ```python
 stack = {
-    "languages": ["Python", "C#"],
-    "frameworks": ["Django", "FastAPI", ".NET"],
+    "languages": ["Python", "C#", "Rust", "Go"],
+    "frameworks": ["Django", "FastAPI", ".NET 10"],
     "databases": ["PostgreSQL", "MongoDB", "MySQL"],
     "cloud": ["AWS", "Lambda", "S3"]
 }
