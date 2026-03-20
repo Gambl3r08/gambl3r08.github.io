@@ -11,7 +11,7 @@ tags:
 
 # Bienvenido a mi Blog
 
-¡Hola! Soy Roberto Lozada, desarrollador backend con más de 5 años de experiencia. Este es mi espacio personal donde compartiré artículos sobre desarrollo de software, buenas prácticas y tecnologías cloud.
+¡Hola! Soy Roberto Lozada, desarrollador de software con más de 5 años de experiencia. Este es mi espacio personal donde compartiré artículos sobre desarrollo de software, buenas prácticas y tecnologías cloud.
 
 ## ¿Qué encontrarás aquí?
 
@@ -21,6 +21,7 @@ En este blog publicaré contenido sobre:
 - **Cloud & AWS**: Lambda, serverless, arquitecturas cloud
 - **Bases de Datos**: PostgreSQL, MongoDB, optimización de queries
 - **Buenas Prácticas**: Clean code, testing, CI/CD
+- **Desarrollo de agentes AI**: FastMcp, PydanticAI, OpenAI agents
 
 ## Mi Stack Tecnológico
 
