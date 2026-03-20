@@ -11,7 +11,7 @@ tags:
 
 # Bienvenido a mi Blog
 
-¡Hola! Soy Roberto Lozada, desarrollador backend con más de 3 años de experiencia. Este es mi espacio personal donde compartiré artículos sobre desarrollo de software, buenas prácticas y tecnologías cloud.
+¡Hola! Soy Roberto Lozada, desarrollador backend con más de 5 años de experiencia. Este es mi espacio personal donde compartiré artículos sobre desarrollo de software, buenas prácticas y tecnologías cloud.
 
 ## ¿Qué encontrarás aquí?
 
