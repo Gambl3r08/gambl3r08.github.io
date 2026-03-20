@@ -9,10 +9,10 @@ export default {
 				surface: 'var(--color-surface)',
 				'surface-elevated': 'var(--color-surface-elevated)',
 				accent: {
-					DEFAULT: '#6366f1',
-					light: '#818cf8'
+					DEFAULT: '#f59e0b',
+					light: '#fbbf24'
 				},
-				violet: '#8b5cf6',
+				violet: '#f97316',
 				heading: 'var(--color-heading)',
 				body: 'var(--color-body)',
 				muted: 'var(--color-muted)'

@@ -36,8 +36,8 @@
 		box-shadow: 0 4px 16px var(--back-to-top-shadow);
 	}
 	button:hover {
-		box-shadow: 0 4px 20px rgba(99, 102, 241, 0.2);
-		border-color: rgba(99, 102, 241, 0.3) !important;
+		box-shadow: 0 4px 20px rgba(245, 158, 11, 0.2);
+		border-color: rgba(245, 158, 11, 0.3) !important;
 	}
 	@keyframes fadeInUp {
 		from {

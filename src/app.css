@@ -27,8 +27,8 @@
 		--orb-opacity-1: 0.12;
 		--orb-opacity-2: 0.08;
 		--orb-opacity-3: 0.06;
-		--glow-color: rgba(99, 102, 241, 0.04);
-		--prose-code-bg: rgba(99, 102, 241, 0.08);
+		--glow-color: rgba(245, 158, 11, 0.04);
+		--prose-code-bg: rgba(245, 158, 11, 0.08);
 		--prose-pre-bg: #1e293b;
 		--skip-link-bg: rgba(248, 250, 252, 0.95);
 		--back-to-top-bg: rgba(241, 245, 249, 0.85);
@@ -59,8 +59,8 @@
 		--orb-opacity-1: 0.20;
 		--orb-opacity-2: 0.15;
 		--orb-opacity-3: 0.10;
-		--glow-color: rgba(99, 102, 241, 0.06);
-		--prose-code-bg: rgba(99, 102, 241, 0.1);
+		--glow-color: rgba(245, 158, 11, 0.06);
+		--prose-code-bg: rgba(245, 158, 11, 0.1);
 		--prose-pre-bg: #0d1117;
 		--skip-link-bg: rgba(30, 41, 59, 0.95);
 		--back-to-top-bg: rgba(30, 41, 59, 0.8);
@@ -82,7 +82,7 @@
 		@apply fixed left-4 top-4 z-[100] rounded-lg px-4 py-2 text-sm font-medium text-heading;
 		background: var(--skip-link-bg);
 		backdrop-filter: blur(12px);
-		border: 1px solid rgba(99, 102, 241, 0.3);
+		border: 1px solid rgba(245, 158, 11, 0.3);
 		transform: translateY(-200%);
 		transition: transform 0.2s ease;
 	}
@@ -108,11 +108,11 @@
 @layer components {
 	.btn-primary {
 		@apply inline-block px-6 py-3 rounded-lg font-medium transition-all duration-300;
-		background: linear-gradient(135deg, #6366f1, #8b5cf6);
+		background: linear-gradient(135deg, #f59e0b, #f97316);
 		color: white;
 	}
 	.btn-primary:hover {
-		box-shadow: 0 0 20px rgba(99, 102, 241, 0.4), 0 0 40px rgba(139, 92, 246, 0.2);
+		box-shadow: 0 0 20px rgba(245, 158, 11, 0.4), 0 0 40px rgba(249, 115, 22, 0.2);
 		transform: translateY(-1px);
 	}
 

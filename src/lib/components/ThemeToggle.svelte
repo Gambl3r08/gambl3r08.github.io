@@ -69,7 +69,7 @@
 	}
 
 	.toggle-track.dark {
-		background: linear-gradient(135deg, #6366f1, #4f46e5);
+		background: linear-gradient(135deg, #1e293b, #0f172a);
 		border-color: rgba(255, 255, 255, 0.1);
 	}
 
@@ -90,7 +90,7 @@
 
 	.toggle-thumb.dark {
 		transform: translateX(22px);
-		background: #1e1b4b;
+		background: #1e293b;
 	}
 
 	.icon {
@@ -112,6 +112,6 @@
 	}
 
 	.moon {
-		color: #c4b5fd;
+		color: #94a3b8;
 	}
 </style>
