@@ -11,7 +11,7 @@ export const translations = {
     },
     // Home
     home: {
-      greeting: 'Hola! Soy',
+      greeting: 'Mi nombre es Roberto Lozada',
       title: 'Desarrollador de Software',
       description:
         'Especializado en automatización de redes y sistemas inteligentes con IA. +5 años construyendo plataformas enterprise con FastAPI, OpenAI Agents y arquitecturas cloud-native.',
@@ -131,7 +131,7 @@ export const translations = {
     },
     // Home
     home: {
-      greeting: "Hi! I'm",
+      greeting: "Hi! my name is Roberto Lozada",
       title: 'Software Engineer',
       description:
         'Specialized in network automation and AI-powered intelligent systems. 5+ years building enterprise platforms with FastAPI, OpenAI Agents and cloud-native architectures.',
