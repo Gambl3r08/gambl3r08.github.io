@@ -2,6 +2,7 @@
 	import SEOHead from '$lib/components/SEOHead.svelte';
 	import { siteData } from '$lib/data/site';
 	import { t, language } from '$lib/i18n';
+	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -15,11 +16,52 @@
 		});
 	}
 
-	// Estimate reading time from content
-	let readingTime = $derived(() => {
-		const text = data.metadata.description || '';
-		const words = text.trim().split(/\s+/).length;
-		return Math.max(1, Math.ceil(words / 200));
+	interface TocItem {
+		id: string;
+		text: string;
+		level: number;
+	}
+
+	let tocItems = $state<TocItem[]>([]);
+	let activeId = $state('');
+	let tocOpen = $state(false);
+
+	onMount(() => {
+		const article = document.querySelector('.prose');
+		if (!article) return;
+
+		const headings = article.querySelectorAll('h2, h3');
+		const items: TocItem[] = [];
+
+		headings.forEach((heading, i) => {
+			if (!heading.id) {
+				heading.id = `heading-${i}`;
+			}
+			items.push({
+				id: heading.id,
+				text: heading.textContent || '',
+				level: parseInt(heading.tagName[1])
+			});
+		});
+
+		tocItems = items;
+
+		if (items.length === 0) return;
+
+		const observer = new IntersectionObserver(
+			(entries) => {
+				for (const entry of entries) {
+					if (entry.isIntersecting) {
+						activeId = entry.target.id;
+					}
+				}
+			},
+			{ rootMargin: '-80px 0px -70% 0px' }
+		);
+
+		headings.forEach((h) => observer.observe(h));
+
+		return () => observer.disconnect();
 	});
 </script>
 
@@ -31,8 +73,8 @@
 />
 
 <article class="px-4 py-16">
-	<div class="mx-auto max-w-3xl">
-		<header class="mb-12 text-center">
+	<div class="mx-auto max-w-3xl lg:max-w-5xl">
+		<header class="mb-12 text-center lg:max-w-3xl lg:mx-auto">
 			<h1 class="mb-4 font-heading text-4xl font-bold text-heading">{data.metadata.title}</h1>
 			<p class="mb-4 text-xl text-muted">{data.metadata.description}</p>
 			<div class="flex items-center justify-center gap-4 text-muted">
@@ -61,8 +103,72 @@
 			{/if}
 		</header>
 
-		<div class="prose prose-lg mx-auto max-w-none">
-			<data.content />
+		<div class="relative lg:flex lg:gap-8">
+			<!-- TOC Sidebar (desktop) -->
+			{#if tocItems.length > 2}
+				<aside class="hidden lg:block lg:w-56 lg:shrink-0">
+					<nav class="sticky top-20" aria-label="Table of contents">
+						<p class="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">
+							{$language === 'es' ? 'Contenido' : 'Contents'}
+						</p>
+						<ul class="space-y-1 text-sm">
+							{#each tocItems as item}
+								<li style="padding-left: {(item.level - 2) * 12}px">
+									<a
+										href="#{item.id}"
+										class="block rounded py-1 px-2 transition-colors {activeId === item.id
+											? 'text-accent-light bg-accent/10'
+											: 'text-muted hover:text-heading'}"
+									>
+										{item.text}
+									</a>
+								</li>
+							{/each}
+						</ul>
+					</nav>
+				</aside>
+
+				<!-- TOC Mobile (collapsible) -->
+				<div class="mb-8 lg:hidden">
+					<button
+						onclick={() => tocOpen = !tocOpen}
+						class="flex w-full items-center justify-between rounded-lg px-4 py-3 text-sm font-medium text-muted transition-colors hover:text-heading"
+						style="background: var(--glass-bg); border: 1px solid var(--glass-border)"
+					>
+						<span>{$language === 'es' ? 'Tabla de contenido' : 'Table of contents'}</span>
+						<svg
+							class="h-4 w-4 transition-transform {tocOpen ? 'rotate-180' : ''}"
+							fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+						>
+							<path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+						</svg>
+					</button>
+					{#if tocOpen}
+						<nav class="mt-2 rounded-lg px-4 py-3" style="background: var(--glass-bg); border: 1px solid var(--glass-border)">
+							<ul class="space-y-1 text-sm">
+								{#each tocItems as item}
+									<li style="padding-left: {(item.level - 2) * 12}px">
+										<a
+											href="#{item.id}"
+											onclick={() => tocOpen = false}
+											class="block rounded py-1 px-2 transition-colors {activeId === item.id
+												? 'text-accent-light bg-accent/10'
+												: 'text-muted hover:text-heading'}"
+										>
+											{item.text}
+										</a>
+									</li>
+								{/each}
+							</ul>
+						</nav>
+					{/if}
+				</div>
+			{/if}
+
+			<!-- Article content -->
+			<div class="prose prose-lg mx-auto max-w-none lg:flex-1 lg:min-w-0">
+				<data.content />
+			</div>
 		</div>
 
 		<footer class="mt-12 border-t border-white/[0.06] pt-8 text-center">

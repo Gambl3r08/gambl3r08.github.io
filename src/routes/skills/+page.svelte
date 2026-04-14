@@ -6,6 +6,22 @@
 	import { t } from '$lib/i18n';
 	import { reveal } from '$lib/utils/scrollReveal';
 
+	function animateBar(node: HTMLElement) {
+		const width = node.style.width;
+		node.style.width = '0%';
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				if (entry.isIntersecting) {
+					requestAnimationFrame(() => { node.style.width = width; });
+					observer.disconnect();
+				}
+			},
+			{ threshold: 0.3 }
+		);
+		observer.observe(node);
+		return { destroy: () => observer.disconnect() };
+	}
+
 	const iconMap: Record<string, string> = {
 		ai: 'M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.1a3.375 3.375 0 0 1 2.7-1.35h7.126c1.062 0 2.062.5 2.7 1.35l2.587 3.45a4.5 4.5 0 0 1 .9 2.7m0 0a3 3 0 0 1-3 3m0 3h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Zm-3 6h.008v.008h-.008v-.008Zm0-6h.008v.008h-.008v-.008Z',
 		cloud: 'M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.502 4.502 0 0 0 2.25 15Z',
@@ -84,8 +100,9 @@
 									</div>
 									<div class="h-1.5 w-full rounded-full" style="background: var(--glass-border)">
 										<div
-											class="h-full rounded-full transition-all duration-700"
+											class="h-full rounded-full transition-all duration-700 ease-out"
 											style="width: {skill.level * 20}%; background: linear-gradient(90deg, var(--accent), var(--accent-secondary))"
+											use:animateBar
 										></div>
 									</div>
 								</div>

@@ -19,6 +19,7 @@
 	let typingText = $state('');
 
 	onMount(() => {
+		const speed = window.innerWidth < 768 ? 55 : 40;
 		const typeInterval = setInterval(() => {
 			if (currentLine >= terminalLines.length) {
 				clearInterval(typeInterval);
@@ -34,7 +35,7 @@
 				currentChar = 0;
 				currentLine++;
 			}
-		}, 40);
+		}, speed);
 
 		return () => clearInterval(typeInterval);
 	});
@@ -87,7 +88,7 @@
 			</div>
 
 			<!-- Terminal animation -->
-			<div class="flex flex-1 justify-center">
+			<div class="hidden flex-1 justify-center sm:flex">
 				<div class="reveal-scale" use:reveal={{ delay: 200 }}>
 					<div class="w-72 md:w-80 overflow-hidden rounded-xl" style="background: var(--terminal-bg); backdrop-filter: blur(12px); border: 1px solid var(--glass-border)">
 						<!-- Terminal header -->
@@ -116,6 +117,22 @@
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Tech Stack Strip -->
+<section class="border-t border-b px-4 py-8" style="border-color: var(--glass-border)">
+	<div class="mx-auto max-w-4xl">
+		<div class="reveal" use:reveal>
+			<p class="mb-5 text-center text-xs font-medium uppercase tracking-widest text-muted">
+				{$t.home.role === 'Software Engineer' ? 'Technologies I work with' : 'Tecnologías que uso'}
+			</p>
+			<div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
+				{#each ['Python', 'FastAPI', 'Go', '.NET', 'TypeScript', 'Docker', 'Kubernetes', 'GCP', 'PostgreSQL'] as tech}
+					<span class="text-sm font-medium text-muted/70 transition-colors hover:text-accent-light">{tech}</span>
+				{/each}
 			</div>
 		</div>
 	</div>

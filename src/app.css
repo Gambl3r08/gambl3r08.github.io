@@ -160,7 +160,6 @@
 	}
 	.btn-primary:hover {
 		box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.4), 0 0 40px rgba(var(--accent-secondary-rgb), 0.2);
-		transform: translateY(-1px);
 	}
 
 	.btn-outline {
@@ -182,9 +181,8 @@
 		border: 1px solid var(--glass-border);
 	}
 	.card:hover {
-		@apply -translate-y-1;
-		border-color: var(--glass-border);
 		box-shadow: 0 8px 32px var(--card-hover-shadow);
+		border-color: rgba(var(--accent-rgb), 0.15);
 	}
 
 	/* Scroll reveal animations */
@@ -269,4 +267,18 @@
 }
 .prose ol > li::marker {
 	@apply text-muted;
+}
+
+/* ===== Reduced motion ===== */
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+	.reveal, .reveal-left, .reveal-right, .reveal-scale {
+		opacity: 1 !important;
+		transform: none !important;
+	}
 }

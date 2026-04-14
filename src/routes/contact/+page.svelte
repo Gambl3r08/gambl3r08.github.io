@@ -100,7 +100,7 @@
 							type="text"
 							bind:value={name}
 							required
-							class="w-full rounded-lg px-4 py-2.5 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30"
+							class="w-full rounded-lg px-4 py-2.5 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30 focus:ring-2 focus:ring-accent/20"
 							style="border: 1px solid var(--input-border); background: var(--input-bg)"
 						/>
 					</div>
@@ -111,7 +111,7 @@
 							type="email"
 							bind:value={email}
 							required
-							class="w-full rounded-lg px-4 py-2.5 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30"
+							class="w-full rounded-lg px-4 py-2.5 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30 focus:ring-2 focus:ring-accent/20"
 							style="border: 1px solid var(--input-border); background: var(--input-bg)"
 						/>
 					</div>

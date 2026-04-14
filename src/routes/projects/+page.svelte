@@ -7,6 +7,18 @@
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
+
+	let activeLanguage = $state('');
+
+	let languages = $derived(
+		[...new Set(data.repos.map((r) => r.language).filter(Boolean))] as string[]
+	);
+
+	let filteredRepos = $derived(
+		activeLanguage
+			? data.repos.filter((r) => r.language === activeLanguage)
+			: data.repos
+	);
 </script>
 
 <SEOHead
@@ -27,8 +39,32 @@
 		</div>
 
 		{#if data.repos && data.repos.length > 0}
+			<!-- Language filter -->
+			{#if languages.length > 1}
+				<div class="reveal mb-8 flex flex-wrap justify-center gap-2" use:reveal={{ delay: 150 }}>
+					<button
+						onclick={() => activeLanguage = ''}
+						class="rounded-full border px-3 py-1 text-sm transition-all {!activeLanguage
+							? 'border-accent/30 bg-accent/10 text-accent-light'
+							: 'border-muted/20 text-muted hover:border-muted/40 hover:text-heading'}"
+					>
+						{$t.blog.allTags}
+					</button>
+					{#each languages as lang}
+						<button
+							onclick={() => activeLanguage = activeLanguage === lang ? '' : lang}
+							class="rounded-full border px-3 py-1 text-sm transition-all {activeLanguage === lang
+								? 'border-accent/30 bg-accent/10 text-accent-light'
+								: 'border-muted/20 text-muted hover:border-muted/40 hover:text-heading'}"
+						>
+							{lang}
+						</button>
+					{/each}
+				</div>
+			{/if}
+
 			<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-				{#each data.repos as repo, i (repo.id)}
+				{#each filteredRepos as repo, i (repo.id)}
 					<div class="reveal" use:reveal={{ delay: i * 80 }}>
 						<RepoCard {repo} />
 					</div>

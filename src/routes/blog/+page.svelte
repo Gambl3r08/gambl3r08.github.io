@@ -74,7 +74,7 @@
 						type="text"
 						bind:value={searchQuery}
 						placeholder={$t.blog.searchPlaceholder}
-						class="w-full rounded-lg py-2.5 pl-10 pr-4 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30"
+						class="w-full rounded-lg py-2.5 pl-10 pr-4 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30 focus:ring-2 focus:ring-accent/20"
 						style="border: 1px solid var(--input-border); background: var(--input-bg)"
 					/>
 				</div>
@@ -108,24 +108,35 @@
 		{#if filteredPosts && filteredPosts.length > 0}
 			<div class="grid gap-8">
 				{#each filteredPosts as post, i}
-					<article class="card reveal" use:reveal={{ delay: i * 100 }}>
+					<article class="card reveal overflow-hidden !p-0" use:reveal={{ delay: i * 100 }}>
 						<a href="/blog/{post.slug}" class="block group">
-							<div class="mb-2 flex items-start gap-3">
-								<div class="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent/10">
-									<svg class="h-4 w-4 text-accent-light" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-										<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
-									</svg>
+							{#if post.image}
+								<div class="relative h-48 w-full overflow-hidden">
+									<img
+										src={post.image}
+										alt={post.title}
+										class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+									/>
+									<div class="absolute inset-0 bg-gradient-to-t from-base/80 to-transparent"></div>
 								</div>
-								<h2
-									class="text-2xl font-semibold text-heading transition-colors group-hover:text-accent-light"
+							{/if}
+							<div class="p-6">
+								<div class="mb-2 flex items-start gap-3">
+									<div class="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent/10">
+										<svg class="h-4 w-4 text-accent-light" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+										</svg>
+									</div>
+									<h2
+										class="text-2xl font-semibold text-heading transition-colors group-hover:text-accent-light"
+									>
+										{post.title}
+									</h2>
+								</div>
+								<p class="mb-4 text-muted pl-11">{post.description}</p>
+								<div
+									class="flex flex-wrap items-center gap-4 text-sm text-muted pl-11"
 								>
-									{post.title}
-								</h2>
-							</div>
-							<p class="mb-4 text-muted pl-11">{post.description}</p>
-							<div
-								class="flex flex-wrap items-center gap-4 text-sm text-muted pl-11"
-							>
 								<span class="flex items-center gap-1.5">
 									<svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
 										<path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5" />
@@ -155,6 +166,7 @@
 										{/each}
 									</div>
 								{/if}
+								</div>
 							</div>
 						</a>
 					</article>
