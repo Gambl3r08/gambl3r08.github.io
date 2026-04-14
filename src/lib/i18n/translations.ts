@@ -17,6 +17,7 @@ export const translations = {
         'Especializado en automatización de redes y sistemas inteligentes con IA. +5 años construyendo plataformas enterprise con FastAPI, OpenAI Agents y arquitecturas cloud-native.',
       viewProjects: 'Ver Proyectos',
       contactMe: 'Contactar',
+      downloadCV: 'Descargar CV',
       role: 'Software Engineer'
     },
     // About
@@ -33,7 +34,8 @@ export const translations = {
       focus: 'Enfoque',
       focusValue: 'IA & Automatización de Redes',
       techStack: 'Tech Stack Principal',
-      techStackItems: ['Python', 'FastAPI', 'OpenAI Agents', 'Docker', 'Kubernetes', 'GCP']
+      techStackItems: ['Python', 'FastAPI', 'OpenAI Agents', 'Docker', 'Kubernetes', 'GCP'],
+      downloadCV: 'Descargar CV'
     },
     // Projects
     projects: {
@@ -43,7 +45,10 @@ export const translations = {
       noRepos: 'No se pudieron cargar los repositorios.',
       viewOnGitHub: 'Ver en GitHub',
       viewAllRepos: 'Ver todos los repositorios',
-      noDescription: 'Sin descripción'
+      noDescription: 'Sin descripción',
+      emptyState: 'No hay repositorios disponibles',
+      emptyDescription: 'Los proyectos no pudieron cargarse en este momento. Visita mi perfil de GitHub directamente.',
+      visitGithub: 'Visitar GitHub'
     },
     // Skills
     skills: {
@@ -101,7 +106,8 @@ export const translations = {
       send: 'Enviar mensaje',
       sending: 'Enviando...',
       success: '¡Mensaje enviado correctamente!',
-      errorSend: 'Error al enviar. Intenta de nuevo.'
+      errorSend: 'Error al enviar. Intenta de nuevo.',
+      notConfigured: 'El formulario de contacto no está configurado aún. Envíame un email directamente.'
     },
     // Footer
     footer: {
@@ -137,6 +143,7 @@ export const translations = {
         'Specialized in network automation and AI-powered intelligent systems. 5+ years building enterprise platforms with FastAPI, OpenAI Agents and cloud-native architectures.',
       viewProjects: 'View Projects',
       contactMe: 'Contact Me',
+      downloadCV: 'Download CV',
       role: 'Software Engineer'
     },
     // About
@@ -153,7 +160,8 @@ export const translations = {
       focus: 'Focus',
       focusValue: 'AI & Network Automation',
       techStack: 'Main Tech Stack',
-      techStackItems: ['Python', 'FastAPI', 'OpenAI Agents', 'Docker', 'Kubernetes', 'GCP']
+      techStackItems: ['Python', 'FastAPI', 'OpenAI Agents', 'Docker', 'Kubernetes', 'GCP'],
+      downloadCV: 'Download CV'
     },
     // Projects
     projects: {
@@ -163,7 +171,10 @@ export const translations = {
       noRepos: 'Could not load repositories.',
       viewOnGitHub: 'View on GitHub',
       viewAllRepos: 'View all repositories',
-      noDescription: 'No description'
+      noDescription: 'No description',
+      emptyState: 'No repositories available',
+      emptyDescription: 'Projects could not be loaded at this time. Visit my GitHub profile directly.',
+      visitGithub: 'Visit GitHub'
     },
     // Skills
     skills: {
@@ -221,7 +232,8 @@ export const translations = {
       send: 'Send message',
       sending: 'Sending...',
       success: 'Message sent successfully!',
-      errorSend: 'Error sending. Please try again.'
+      errorSend: 'Error sending. Please try again.',
+      notConfigured: 'Contact form is not configured yet. Send me an email directly.'
     },
     // Footer
     footer: {

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { PUBLIC_WEB3FORMS_KEY } from '$env/static/public';
 	import SEOHead from '$lib/components/SEOHead.svelte';
 	import { siteData } from '$lib/data/site';
 	import { t } from '$lib/i18n';
@@ -9,8 +10,11 @@
 	let message = $state('');
 	let status = $state<'idle' | 'sending' | 'success' | 'error'>('idle');
 
+	const isConfigured = !!PUBLIC_WEB3FORMS_KEY && PUBLIC_WEB3FORMS_KEY !== 'your_key_here';
+
 	async function handleSubmit(e: Event) {
 		e.preventDefault();
+		if (!isConfigured) return;
 		status = 'sending';
 
 		try {
@@ -18,7 +22,7 @@
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
-					access_key: '/* YOUR_WEB3FORMS_KEY */',
+					access_key: PUBLIC_WEB3FORMS_KEY,
 					name,
 					email,
 					message,
@@ -124,12 +128,14 @@
 					</div>
 					<button
 						type="submit"
-						disabled={status === 'sending'}
+						disabled={status === 'sending' || !isConfigured}
 						class="btn-primary w-full text-center disabled:opacity-50"
 					>
 						{status === 'sending' ? $t.contact.sending : $t.contact.send}
 					</button>
-					{#if status === 'success'}
+					{#if !isConfigured}
+						<p class="text-sm text-muted">{$t.contact.notConfigured}</p>
+					{:else if status === 'success'}
 						<p class="text-sm text-green-400">{$t.contact.success}</p>
 					{:else if status === 'error'}
 						<p class="text-sm text-red-400">{$t.contact.errorSend}</p>

@@ -41,6 +41,9 @@
 	<meta name="twitter:description" content={description} />
 	<meta name="twitter:image" content="{$page.url.origin}{image}" />
 
+	<!-- RSS -->
+	<link rel="alternate" type="application/rss+xml" title="{siteData.name} - Blog" href="/rss.xml" />
+
 	<!-- Extra SEO -->
 	<meta name="author" content={siteData.name} />
 	<meta name="robots" content="index, follow" />

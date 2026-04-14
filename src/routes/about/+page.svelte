@@ -3,6 +3,8 @@
 	import { siteData } from '$lib/data/site';
 	import { t } from '$lib/i18n';
 	import { reveal } from '$lib/utils/scrollReveal';
+
+	let imgFailed = $state(false);
 </script>
 
 <SEOHead
@@ -20,11 +22,20 @@
 		<div class="grid gap-4 md:grid-cols-4 md:grid-rows-[auto_auto_auto]">
 			<!-- Bio - spans 2 cols -->
 			<div class="card reveal md:col-span-2 md:row-span-2" use:reveal={{ delay: 100 }}>
-				<div class="mb-3 flex items-center gap-3">
-					<div class="flex h-9 w-9 items-center justify-center rounded-lg bg-accent/10">
-						<svg class="h-5 w-5 text-accent-light" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-							<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-						</svg>
+				<div class="mb-4 flex items-center gap-4">
+					<div class="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-full border-2 border-accent/30">
+						{#if !imgFailed}
+							<img
+								src="/profile.webp"
+								alt={siteData.name}
+								class="h-full w-full object-cover"
+								onerror={() => { imgFailed = true; }}
+							/>
+						{:else}
+							<div class="flex h-full w-full items-center justify-center bg-accent/10 text-xl font-bold text-accent-light">
+								RL
+							</div>
+						{/if}
 					</div>
 					<h2 class="text-lg font-semibold text-heading">{siteData.name}</h2>
 				</div>
@@ -95,8 +106,22 @@
 				</div>
 			</div>
 
-			<!-- Technologies Mastered -->
+			<!-- Download CV -->
 			<div class="card reveal text-center group md:col-span-2" use:reveal={{ delay: 450 }}>
+				<a
+					href="/Roberto_Lozada_CV_2026.pdf"
+					download
+					class="btn-primary inline-flex items-center gap-2"
+				>
+					<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+						<path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+					</svg>
+					{$t.about.downloadCV}
+				</a>
+			</div>
+
+			<!-- Technologies Mastered -->
+			<div class="card reveal text-center group md:col-span-2" use:reveal={{ delay: 500 }}>
 				<div class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10">
 					<svg class="h-5 w-5 text-accent-light" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 0 1-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 0 1 4.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0 1 12 15a9.065 9.065 0 0 0-6.23.693L5 14.5m14.8.8 1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0 1 12 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />

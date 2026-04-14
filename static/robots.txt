@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gambl3r08.github.io/sitemap.xml

@@ -54,13 +54,13 @@
 	<div class="mx-auto w-full max-w-6xl">
 		<div class="flex flex-col items-center justify-between gap-12 md:flex-row">
 			<div class="flex-1 text-center md:text-left">
-				<div class="reveal" use:reveal={{ delay: 0 }}>
-					<p class="mb-4 text-sm font-medium uppercase tracking-widest text-accent-light">
+				<div class="reveal mt-8 md:mt-0" use:reveal={{ delay: 0 }}>
+					<p class="mb-3 text-sm font-medium uppercase tracking-widest text-accent-light">
 						{$t.home.greeting}
 					</p>
 				</div>
 				<div class="reveal" use:reveal={{ delay: 100 }}>
-					<h1 class="mb-4 font-heading text-5xl font-bold md:text-6xl">
+					<h1 class="mb-2 font-heading text-4xl font-bold md:text-5xl">
 						<span class="bg-gradient-to-r from-accent-light via-violet to-accent bg-clip-text text-transparent" style="background-size: 200% auto; animation: gradientShift 8s ease infinite">{siteData.name}</span>
 					</h1>
 				</div>
@@ -74,9 +74,15 @@
 						{$t.home.description}
 					</p>
 				</div>
-				<div class="reveal flex justify-center gap-4 md:justify-start" use:reveal={{ delay: 400 }}>
+				<div class="reveal flex flex-wrap justify-center gap-4 md:justify-start" use:reveal={{ delay: 400 }}>
 					<a href="/projects" class="btn-primary">{$t.home.viewProjects}</a>
 					<a href="/contact" class="btn-outline">{$t.home.contactMe}</a>
+					<a href="/Roberto_Lozada_CV_2026.pdf" download class="btn-outline inline-flex items-center gap-2">
+						<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+						</svg>
+						{$t.home.downloadCV}
+					</a>
 				</div>
 			</div>
 
