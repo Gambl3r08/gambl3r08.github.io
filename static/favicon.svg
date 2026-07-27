@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Roberto Lozada">
+  <title>Roberto Lozada</title>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbbf24"/>
+      <stop offset="1" stop-color="#f97316"/>
+    </linearGradient>
+  </defs>
+  <!-- Amber tile: same gradient as the site's primary button, so the tab icon
+       reads as part of the brand at 16px. -->
+  <rect width="32" height="32" rx="7" fill="url(#g)"/>
+  <!-- Terminal prompt, echoing the hero terminal. Drawn as geometry rather
+       than <text> so it never depends on a font being available. -->
+  <g fill="none" stroke="#0f172a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="9.5,10.5 15,16 9.5,21.5"/>
+  </g>
+  <rect x="16.5" y="19.5" width="7" height="3" rx="1.5" fill="#0f172a"/>
+</svg>
