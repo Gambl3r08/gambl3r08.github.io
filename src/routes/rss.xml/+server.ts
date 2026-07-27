@@ -1,10 +1,9 @@
 import { getAllPosts } from '$lib/utils/posts';
-import { siteData } from '$lib/data/site';
+import { siteData, SITE_URL as BASE_URL } from '$lib/data/site';
 import type { RequestHandler } from './$types';
 
 export const prerender = true;
 
-const BASE_URL = 'https://gambl3r08.github.io';
 
 export const GET: RequestHandler = async () => {
 	const posts = await getAllPosts();
@@ -25,8 +24,8 @@ export const GET: RequestHandler = async () => {
 	const rss = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>${siteData.name} - Blog</title>
-    <description>${siteData.description}</description>
+    <title><![CDATA[${siteData.name} - Blog]]></title>
+    <description><![CDATA[${siteData.description}]]></description>
     <link>${BASE_URL}/blog</link>
     <atom:link href="${BASE_URL}/rss.xml" rel="self" type="application/rss+xml"/>
     <language>es</language>

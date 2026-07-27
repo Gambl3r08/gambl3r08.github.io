@@ -94,7 +94,7 @@
 				<div class="mt-4 flex justify-center gap-2">
 					{#each data.metadata.tags as tag}
 						<span
-							class="rounded-full border border-accent/10 bg-accent/5 px-3 py-1 text-sm text-accent-light"
+							class="rounded-full border border-accent/10 bg-accent/5 px-3 py-1 text-sm text-accent-strong"
 						>
 							{tag}
 						</span>
@@ -117,7 +117,7 @@
 									<a
 										href="#{item.id}"
 										class="block rounded py-1 px-2 transition-colors {activeId === item.id
-											? 'text-accent-light bg-accent/10'
+											? 'text-accent-strong bg-accent/10'
 											: 'text-muted hover:text-heading'}"
 									>
 										{item.text}
@@ -152,7 +152,7 @@
 											href="#{item.id}"
 											onclick={() => tocOpen = false}
 											class="block rounded py-1 px-2 transition-colors {activeId === item.id
-												? 'text-accent-light bg-accent/10'
+												? 'text-accent-strong bg-accent/10'
 												: 'text-muted hover:text-heading'}"
 										>
 											{item.text}

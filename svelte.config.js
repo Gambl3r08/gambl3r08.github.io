@@ -23,7 +23,17 @@ const config = {
 			strict: true
 		}),
 		prerender: {
-			entries: ['*']
+			entries: ['*'],
+			handleHttpError: ({ path, referrer, message }) => {
+				// The avatar is optional: /about renders initials via its onerror
+				// fallback when it's absent. Every other broken link should still
+				// fail the build.
+				if (path === '/profile.webp') {
+					console.warn(`[prerender] optional asset missing: ${path} (from ${referrer})`);
+					return;
+				}
+				throw new Error(message);
+			}
 		}
 	}
 };

@@ -1,9 +1,9 @@
 import { getAllPosts } from '$lib/utils/posts';
+import { SITE_URL as BASE_URL } from '$lib/data/site';
 import type { RequestHandler } from './$types';
 
 export const prerender = true;
 
-const BASE_URL = 'https://gambl3r08.github.io';
 
 const staticRoutes = ['/', '/about', '/projects', '/skills', '/blog', '/contact'];
 

@@ -10,9 +10,15 @@ export default {
 				'surface-elevated': 'var(--color-surface-elevated)',
 				accent: {
 					DEFAULT: 'rgb(var(--accent-rgb) / <alpha-value>)',
-					light: 'rgb(var(--accent-light-rgb) / <alpha-value>)'
+					light: 'rgb(var(--accent-light-rgb) / <alpha-value>)',
+					// Text-safe accent: resolves to the deep tier on light
+					// backgrounds and the bright tier on dark. Use this for text.
+					strong: 'rgb(var(--accent-strong-rgb) / <alpha-value>)'
 				},
-				violet: 'rgb(var(--accent-secondary-rgb) / <alpha-value>)',
+				violet: {
+					DEFAULT: 'rgb(var(--accent-secondary-rgb) / <alpha-value>)',
+					strong: 'rgb(var(--accent-secondary-strong-rgb) / <alpha-value>)'
+				},
 				heading: 'var(--color-heading)',
 				body: 'var(--color-body)',
 				muted: 'var(--color-muted)'

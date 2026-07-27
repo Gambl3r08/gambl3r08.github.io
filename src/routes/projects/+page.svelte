@@ -45,7 +45,7 @@
 					<button
 						onclick={() => activeLanguage = ''}
 						class="rounded-full border px-3 py-1 text-sm transition-all {!activeLanguage
-							? 'border-accent/30 bg-accent/10 text-accent-light'
+							? 'border-accent/30 bg-accent/10 text-accent-strong'
 							: 'border-muted/20 text-muted hover:border-muted/40 hover:text-heading'}"
 					>
 						{$t.blog.allTags}
@@ -54,7 +54,7 @@
 						<button
 							onclick={() => activeLanguage = activeLanguage === lang ? '' : lang}
 							class="rounded-full border px-3 py-1 text-sm transition-all {activeLanguage === lang
-								? 'border-accent/30 bg-accent/10 text-accent-light'
+								? 'border-accent/30 bg-accent/10 text-accent-strong'
 								: 'border-muted/20 text-muted hover:border-muted/40 hover:text-heading'}"
 						>
 							{lang}
@@ -73,7 +73,7 @@
 		{:else}
 			<div class="card mx-auto max-w-md text-center">
 				<div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10">
-					<svg class="h-7 w-7 text-accent-light" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+					<svg class="h-7 w-7 text-accent-strong" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
 					</svg>
 				</div>

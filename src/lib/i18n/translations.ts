@@ -18,7 +18,14 @@ export const translations = {
       viewProjects: 'Ver Proyectos',
       contactMe: 'Contactar',
       downloadCV: 'Descargar CV',
-      role: 'Software Engineer'
+      role: 'Software Engineer',
+      techStrip: 'Tecnologías que uso',
+      featuredProjects: 'Proyectos destacados',
+      featuredProjectsDesc: 'Una muestra de lo que he estado construyendo últimamente.',
+      latestPosts: 'Últimas publicaciones',
+      latestPostsDesc: 'Notas sobre backend, IA y automatización de redes.',
+      seeAllProjects: 'Ver todos los proyectos',
+      seeAllPosts: 'Ver todo el blog'
     },
     // About
     about: {
@@ -144,7 +151,14 @@ export const translations = {
       viewProjects: 'View Projects',
       contactMe: 'Contact Me',
       downloadCV: 'Download CV',
-      role: 'Software Engineer'
+      role: 'Software Engineer',
+      techStrip: 'Technologies I work with',
+      featuredProjects: 'Featured projects',
+      featuredProjectsDesc: 'A sample of what I have been building lately.',
+      latestPosts: 'Latest posts',
+      latestPostsDesc: 'Notes on backend, AI and network automation.',
+      seeAllProjects: 'See all projects',
+      seeAllPosts: 'Read the blog'
     },
     // About
     about: {

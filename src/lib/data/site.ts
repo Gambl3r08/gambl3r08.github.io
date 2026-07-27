@@ -1,5 +1,14 @@
 import type { SiteData } from '$lib/types';
 
+/**
+ * Canonical origin, without a trailing slash.
+ *
+ * Must be a constant rather than `$page.url.origin`: during prerendering the
+ * origin resolves to the internal `http://sveltekit-prerender` host, which was
+ * being baked into canonical links, og:url and og:image.
+ */
+export const SITE_URL = 'https://gambl3r08.github.io';
+
 export const siteData: SiteData = {
 	name: 'Roberto Lozada',
 	title: 'Desarrollador de Software',

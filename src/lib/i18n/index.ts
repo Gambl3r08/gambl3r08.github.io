@@ -5,30 +5,33 @@ import { translations, type Language } from './translations';
 function createLanguageStore() {
 	const { subscribe, set, update } = writable<Language>('es');
 
+	// Screen readers pick pronunciation from <html lang>. Leaving it on the
+	// hardcoded "es" made English content read with a Spanish voice.
+	function persist(lang: Language) {
+		if (typeof window === 'undefined') return;
+		localStorage.setItem('language', lang);
+		document.documentElement.lang = lang;
+	}
+
 	return {
 		subscribe,
 		set: (lang: Language) => {
-			if (typeof window !== 'undefined') {
-				localStorage.setItem('language', lang);
-			}
+			persist(lang);
 			set(lang);
 		},
 		toggle: () => {
 			update((current) => {
-				const newLang = current === 'es' ? 'en' : 'es';
-				if (typeof window !== 'undefined') {
-					localStorage.setItem('language', newLang);
-				}
+				const newLang: Language = current === 'es' ? 'en' : 'es';
+				persist(newLang);
 				return newLang;
 			});
 		},
 		init: () => {
-			if (typeof window !== 'undefined') {
-				const saved = localStorage.getItem('language') as Language | null;
-				if (saved && (saved === 'es' || saved === 'en')) {
-					set(saved);
-				}
-			}
+			if (typeof window === 'undefined') return;
+			const saved = localStorage.getItem('language') as Language | null;
+			const lang: Language = saved === 'es' || saved === 'en' ? saved : 'es';
+			document.documentElement.lang = lang;
+			set(lang);
 		}
 	};
 }

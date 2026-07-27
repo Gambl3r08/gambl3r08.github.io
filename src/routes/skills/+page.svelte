@@ -48,23 +48,30 @@
 			</p>
 		</div>
 
-		<!-- Skill Categories Grid -->
+		<!-- Skill Categories Grid.
+		     With an odd number of categories the last one would sit alone in a
+		     two-column row, leaving half a row empty. It spans the full width
+		     instead and splits its own list into two columns. -->
 		<div class="grid gap-6 md:grid-cols-2">
 			{#each skillCategories as cat, catIdx}
 				{@const catTranslation = $t.skills[cat.key as keyof typeof $t.skills] as { title: string; description: string }}
-				<div class="card reveal group relative overflow-hidden" use:reveal={{ delay: 150 + catIdx * 100 }}>
+				{@const isOrphan = skillCategories.length % 2 === 1 && catIdx === skillCategories.length - 1}
+				<div
+					class="card reveal group relative overflow-hidden {isOrphan ? 'md:col-span-2' : ''}"
+					use:reveal={{ delay: 150 + catIdx * 100 }}
+				>
 					<!-- Top accent bar -->
 					<div class="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r {catIdx % 2 === 0 ? 'from-accent to-violet' : 'from-violet to-accent'}"></div>
 
 					<!-- Header -->
 					<div class="mb-4 flex items-center gap-3">
 						<div class="flex h-10 w-10 items-center justify-center rounded-xl {catIdx % 2 === 0 ? 'bg-accent/10' : 'bg-violet/10'}">
-							<svg class="h-5 w-5 {catIdx % 2 === 0 ? 'text-accent-light' : 'text-violet'}" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+							<svg class="h-5 w-5 {catIdx % 2 === 0 ? 'text-accent-strong' : 'text-violet-strong'}" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
 								<path stroke-linecap="round" stroke-linejoin="round" d={iconMap[cat.icon]} />
 							</svg>
 						</div>
 						<div>
-							<h2 class="text-lg font-semibold text-heading transition-colors group-hover:text-accent-light">
+							<h2 class="text-lg font-semibold text-heading transition-colors group-hover:text-accent-strong">
 								{catTranslation.title}
 							</h2>
 							<p class="text-sm text-muted">{catTranslation.description}</p>
@@ -72,7 +79,7 @@
 					</div>
 
 					<!-- Skills List -->
-					<div class="space-y-3">
+					<div class="space-y-3 {isOrphan ? 'md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-3 md:space-y-0' : ''}">
 						{#each cat.skills as skill}
 							{@const icon = skillIcons[skill.name]}
 							<div class="flex items-center gap-3">
@@ -88,7 +95,7 @@
 											<path d={icon[0]} />
 										</svg>
 									{:else}
-										<span class="text-xs font-bold text-accent-light">{skill.name.charAt(0)}</span>
+										<span class="text-xs font-bold text-accent-strong">{skill.name.charAt(0)}</span>
 									{/if}
 								</div>
 

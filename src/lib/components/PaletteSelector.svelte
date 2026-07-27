@@ -59,7 +59,7 @@
 					</div>
 					<span class="font-medium">{p.name}</span>
 					{#if $palette === p.id}
-						<svg class="ml-auto h-4 w-4 text-accent-light" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+						<svg class="ml-auto h-4 w-4 text-accent-strong" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
 							<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
 						</svg>
 					{/if}

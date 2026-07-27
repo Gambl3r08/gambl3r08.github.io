@@ -18,8 +18,10 @@
 
 	onMount(() => {
 		language.init();
-		theme.init();
 		palette.init();
+		// theme.init() subscribes to the OS colour-scheme media query and hands
+		// back its unsubscribe.
+		return theme.init();
 	});
 
 	// View Transitions API
@@ -60,15 +62,10 @@
 		></div>
 	</div>
 
-	<!-- Noise texture overlay -->
-	<div class="pointer-events-none fixed inset-0 z-[1]" style="opacity: var(--noise-opacity)" aria-hidden="true">
-		<svg width="100%" height="100%">
-			<filter id="noise">
-				<feTurbulence type="fractalNoise" baseFrequency="0.80" numOctaves="4" stitchTiles="stitch" />
-			</filter>
-			<rect width="100%" height="100%" filter="url(#noise)" />
-		</svg>
-	</div>
+	<!-- Noise texture overlay. Rendered as a small repeating tile rather than a
+	     viewport-sized <feTurbulence>, which the browser had to evaluate over the
+	     full screen area on every resize/repaint. -->
+	<div class="noise pointer-events-none fixed inset-0 z-[1]" style="opacity: var(--noise-opacity)" aria-hidden="true"></div>
 
 	<Navbar />
 	<main id="main-content" class="relative z-[2] flex-1">
@@ -80,6 +77,11 @@
 </div>
 
 <style>
+	.noise {
+		background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+		background-repeat: repeat;
+	}
+
 	/* View Transitions */
 	@keyframes fade-in {
 		from { opacity: 0; }

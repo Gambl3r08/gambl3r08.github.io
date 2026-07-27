@@ -4,6 +4,10 @@ on:
   push:
     branches: ['main']
   workflow_dispatch:
+  # The projects page is baked from the GitHub API at build time, so rebuild
+  # weekly to keep it in sync with the repositories.
+  schedule:
+    - cron: '0 6 * * 1'
 
 permissions:
   contents: read
@@ -34,6 +38,9 @@ jobs:
         run: npm run build
         env:
           PUBLIC_WEB3FORMS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_KEY }}
+          # Raises the GitHub API quota from 60/h per runner IP to 5000/h, so
+          # the projects page doesn't build empty under rate limiting.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

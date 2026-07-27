@@ -5,22 +5,43 @@
 		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content="Portfolio de Roberto Lozada - Desarrollador Backend" />
-		<meta name="theme-color" content="#f8fafc" />
+		<!-- Kept in sync with the resolved theme (which may be a manual override,
+		     not just the OS preference) by the boot script below. -->
+		<meta name="theme-color" id="theme-color" content="#f8fafc" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<!-- Loaded async so the font request never blocks first paint. -->
 		<link
 			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
 			rel="stylesheet"
+			media="print"
+			onload="this.media='all'"
 		/>
+		<noscript>
+			<link
+				href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+				rel="stylesheet"
+			/>
+		</noscript>
 		<script>
-			(function() {
-				var t = localStorage.getItem('theme');
-				if (t === 'dark') {
-					document.documentElement.classList.add('dark');
-					document.documentElement.style.colorScheme = 'dark';
+			(function () {
+				var d = document.documentElement;
+				var saved = localStorage.getItem('theme');
+				// No stored choice → follow the OS preference instead of forcing light.
+				var dark =
+					saved === 'dark' ||
+					(saved !== 'light' &&
+						window.matchMedia('(prefers-color-scheme: dark)').matches);
+				if (dark) {
+					d.classList.add('dark');
+					d.style.colorScheme = 'dark';
+					var m = document.getElementById('theme-color');
+					if (m) m.content = '#0f172a';
 				}
 				var p = localStorage.getItem('palette');
-				if (p) document.documentElement.setAttribute('data-palette', p);
+				if (p) d.setAttribute('data-palette', p);
+				var l = localStorage.getItem('language');
+				if (l === 'es' || l === 'en') d.lang = l;
 			})();
 		</script>
 		%sveltekit.head%

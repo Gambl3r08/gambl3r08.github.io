@@ -15,7 +15,7 @@
 	] as const;
 </script>
 
-<footer class="relative py-10" style="background: var(--footer-bg)" role="contentinfo">
+<footer class="relative py-10" style="background: var(--footer-bg)">
 	<!-- Gradient accent line -->
 	<div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"></div>
 
@@ -25,7 +25,7 @@
 			<div>
 				<a
 					href="/"
-					class="mb-2 inline-block font-heading text-lg font-bold bg-gradient-to-r from-accent-light to-violet bg-clip-text text-transparent"
+					class="mb-2 inline-block font-heading text-lg font-bold bg-gradient-to-r from-accent-strong to-violet-strong bg-clip-text text-transparent"
 				>
 					{siteData.name}
 				</a>
@@ -40,7 +40,7 @@
 					{#each navLinks as link}
 						<a
 							href={link.href}
-							class="text-sm text-muted transition-colors hover:text-accent-light"
+							class="text-sm text-muted transition-colors hover:text-accent-strong"
 						>
 							{$t.nav[link.key]}
 						</a>
@@ -55,7 +55,7 @@
 						href="https://github.com/{siteData.contact.github}"
 						target="_blank"
 						rel="noopener noreferrer"
-						class="text-muted transition-colors hover:text-accent-light"
+						class="text-muted transition-colors hover:text-accent-strong"
 						aria-label="GitHub"
 					>
 						<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -68,7 +68,7 @@
 						href="https://linkedin.com/in/{siteData.contact.linkedin}"
 						target="_blank"
 						rel="noopener noreferrer"
-						class="text-muted transition-colors hover:text-accent-light"
+						class="text-muted transition-colors hover:text-accent-strong"
 						aria-label="LinkedIn"
 					>
 						<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -81,7 +81,7 @@
 						href="/rss.xml"
 						target="_blank"
 						rel="noopener noreferrer"
-						class="text-muted transition-colors hover:text-accent-light"
+						class="text-muted transition-colors hover:text-accent-strong"
 						aria-label="RSS Feed"
 					>
 						<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">

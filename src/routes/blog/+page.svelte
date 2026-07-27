@@ -51,7 +51,7 @@
 />
 
 <section class="px-4 py-16">
-	<div class="mx-auto max-w-4xl">
+	<div class="mx-auto max-w-6xl">
 		<div class="reveal" use:reveal>
 			<h1 class="section-title">{$t.blog.title}</h1>
 		</div>
@@ -67,11 +67,15 @@
 			<div class="reveal mb-8 space-y-4" use:reveal={{ delay: 150 }}>
 				<!-- Search input -->
 				<div class="relative mx-auto max-w-md">
-					<svg class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+					<!-- A placeholder is not a label: it disappears on input and is
+					     not reliably announced. -->
+					<label for="post-search" class="sr-only">{$t.blog.searchPlaceholder}</label>
+					<svg class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
 						<path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
 					</svg>
 					<input
-						type="text"
+						id="post-search"
+						type="search"
 						bind:value={searchQuery}
 						placeholder={$t.blog.searchPlaceholder}
 						class="w-full rounded-lg py-2.5 pl-10 pr-4 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30 focus:ring-2 focus:ring-accent/20"
@@ -85,7 +89,7 @@
 						<button
 							onclick={() => activeTag = ''}
 							class="rounded-full border px-3 py-1 text-sm transition-all {!activeTag
-								? 'border-accent/30 bg-accent/10 text-accent-light'
+								? 'border-accent/30 bg-accent/10 text-accent-strong'
 								: 'border-muted/20 text-muted hover:border-muted/40 hover:text-heading'}"
 						>
 							{$t.blog.allTags}
@@ -94,7 +98,7 @@
 							<button
 								onclick={() => activeTag = activeTag === tag ? '' : tag}
 								class="rounded-full border px-3 py-1 text-sm transition-all {activeTag === tag
-									? 'border-accent/30 bg-accent/10 text-accent-light'
+									? 'border-accent/30 bg-accent/10 text-accent-strong'
 									: 'border-muted/20 text-muted hover:border-muted/40 hover:text-heading'}"
 							>
 								{tag}
@@ -106,10 +110,10 @@
 		{/if}
 
 		{#if filteredPosts && filteredPosts.length > 0}
-			<div class="grid gap-8">
+			<div class="grid gap-6 md:grid-cols-2">
 				{#each filteredPosts as post, i}
 					<article class="card reveal overflow-hidden !p-0" use:reveal={{ delay: i * 100 }}>
-						<a href="/blog/{post.slug}" class="block group">
+						<a href="/blog/{post.slug}" class="flex h-full flex-col group">
 							{#if post.image}
 								<div class="relative h-48 w-full overflow-hidden">
 									<img
@@ -120,22 +124,24 @@
 									<div class="absolute inset-0 bg-gradient-to-t from-base/80 to-transparent"></div>
 								</div>
 							{/if}
-							<div class="p-6">
+							<div class="flex flex-1 flex-col p-6">
 								<div class="mb-2 flex items-start gap-3">
 									<div class="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent/10">
-										<svg class="h-4 w-4 text-accent-light" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+										<svg class="h-4 w-4 text-accent-strong" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
 											<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
 										</svg>
 									</div>
 									<h2
-										class="text-2xl font-semibold text-heading transition-colors group-hover:text-accent-light"
+										class="text-xl font-semibold text-heading transition-colors group-hover:text-accent-strong"
 									>
 										{post.title}
 									</h2>
 								</div>
 								<p class="mb-4 text-muted pl-11">{post.description}</p>
+								<!-- mt-auto pins the meta row to the card bottom so
+								     side-by-side cards align regardless of title length. -->
 								<div
-									class="flex flex-wrap items-center gap-4 text-sm text-muted pl-11"
+									class="mt-auto flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted pl-11"
 								>
 								<span class="flex items-center gap-1.5">
 									<svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -156,7 +162,7 @@
 								{#if post.tags && post.tags.length > 0}
 									<div class="flex gap-2">
 										{#each post.tags.slice(0, 3) as tag}
-											<span class="flex items-center gap-1 rounded border border-accent/10 bg-accent/5 px-2 py-1 text-accent-light">
+											<span class="flex items-center gap-1 rounded border border-accent/10 bg-accent/5 px-2 py-1 text-accent-strong">
 												<svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
 													<path stroke-linecap="round" stroke-linejoin="round" d="M9.568 3H5.25A2.25 2.25 0 0 0 3 5.25v4.318c0 .597.237 1.17.659 1.591l9.581 9.581c.699.699 1.78.872 2.607.33a18.095 18.095 0 0 0 5.223-5.223c.542-.827.369-1.908-.33-2.607L11.16 3.66A2.25 2.25 0 0 0 9.568 3Z" />
 													<path stroke-linecap="round" stroke-linejoin="round" d="M6 6h.008v.008H6V6Z" />

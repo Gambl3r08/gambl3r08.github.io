@@ -15,6 +15,17 @@
 		isMenuOpen = false;
 	};
 
+	function handleKeydown(e: KeyboardEvent) {
+		if (e.key === 'Escape') closeMenu();
+	}
+
+	// Close on navigation — otherwise the panel stayed open over the new page
+	// when a link resolved to the route it was already on, or on back/forward.
+	$effect(() => {
+		void $page.url.pathname;
+		isMenuOpen = false;
+	});
+
 	const navLinks = [
 		{ href: '/', key: 'home', icon: 'home' },
 		{ href: '/about', key: 'about', icon: 'user' },
@@ -25,8 +36,9 @@
 	] as const;
 </script>
 
+<svelte:window onkeydown={handleKeydown} />
+
 <nav
-	role="navigation"
 	aria-label="Main navigation"
 	class="sticky top-0 z-50 border-b"
 	style="border-color: var(--glass-border); background: var(--navbar-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px)"
@@ -35,7 +47,7 @@
 		<div class="flex h-16 items-center justify-between">
 			<a
 				href="/"
-				class="font-heading text-xl font-bold bg-gradient-to-r from-accent-light to-violet bg-clip-text text-transparent transition-opacity hover:opacity-80"
+				class="font-heading text-xl font-bold bg-gradient-to-r from-accent-strong to-violet-strong bg-clip-text text-transparent transition-opacity hover:opacity-80"
 			>
 				Roberto Lozada
 			</a>
@@ -46,7 +58,7 @@
 					<a
 						href={link.href}
 						class="relative px-3 py-1.5 text-sm font-medium transition-colors rounded-full {$page.url.pathname === link.href
-							? 'text-accent-light bg-accent/10'
+							? 'text-accent-strong bg-accent/10'
 							: 'text-muted hover:text-heading'}"
 						aria-current={$page.url.pathname === link.href ? 'page' : undefined}
 					>
@@ -98,15 +110,16 @@
 
 		<!-- Mobile Navigation -->
 		{#if isMenuOpen}
-			<div id="mobile-menu" class="py-4 md:hidden" style="border-top: 1px solid var(--glass-border)" role="menu">
+			<!-- A disclosure panel of plain links: role="menu"/"menuitem" would
+			     promise arrow-key semantics this doesn't implement. -->
+			<div id="mobile-menu" class="py-4 md:hidden" style="border-top: 1px solid var(--glass-border)">
 				{#each navLinks as link}
 					<a
 						href={link.href}
 						class="flex items-center gap-2 rounded-lg py-2 px-3 font-medium {$page.url.pathname === link.href
-							? 'text-accent-light bg-accent/10'
+							? 'text-accent-strong bg-accent/10'
 							: 'text-muted hover:text-heading'}"
 						onclick={closeMenu}
-						role="menuitem"
 						aria-current={$page.url.pathname === link.href ? 'page' : undefined}
 					>
 						{#if link.icon === 'home'}

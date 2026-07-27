@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { GitHubRepo } from '$lib/types';
 	import { languageColors } from '$lib/utils/github';
+	import { t } from '$lib/i18n';
 
 	interface Props {
 		repo: GitHubRepo;
@@ -33,7 +34,7 @@
 			<svg class="h-4 w-4 shrink-0 text-muted" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
 			</svg>
-			<h3 class="truncate text-lg font-semibold text-heading transition-colors group-hover:text-accent-light">{repo.name}</h3>
+			<h3 class="truncate text-lg font-semibold text-heading transition-colors group-hover:text-accent-strong">{repo.name}</h3>
 		</div>
 		<div class="flex items-center gap-3 text-sm text-muted shrink-0">
 			{#if repo.stargazers_count > 0}
@@ -56,7 +57,7 @@
 	</div>
 
 	<p class="mb-4 line-clamp-2 text-sm text-muted">
-		{repo.description || 'Sin descripcion'}
+		{repo.description || $t.projects.noDescription}
 	</p>
 
 	<div class="flex items-center justify-between">
@@ -75,7 +76,7 @@
 		{#if repo.topics && repo.topics.length > 0}
 			<div class="flex gap-1">
 				{#each repo.topics.slice(0, 2) as topic}
-					<span class="rounded border border-accent/10 bg-accent/5 px-2 py-0.5 text-xs text-accent-light">
+					<span class="rounded border border-accent/10 bg-accent/5 px-2 py-0.5 text-xs text-accent-strong">
 						{topic}
 					</span>
 				{/each}

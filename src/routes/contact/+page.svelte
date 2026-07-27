@@ -1,5 +1,8 @@
 <script lang="ts">
-	import { PUBLIC_WEB3FORMS_KEY } from '$env/static/public';
+	// `$env/static/public` hard-fails the build when the variable is absent,
+	// which defeats the `isConfigured` fallback below. The dynamic form is
+	// still inlined at build time by adapter-static.
+	import { env } from '$env/dynamic/public';
 	import SEOHead from '$lib/components/SEOHead.svelte';
 	import { siteData } from '$lib/data/site';
 	import { t } from '$lib/i18n';
@@ -8,13 +11,17 @@
 	let name = $state('');
 	let email = $state('');
 	let message = $state('');
+	// Web3Forms honeypot: a real person never fills a hidden field, and the API
+	// silently drops any submission where it is non-empty.
+	let botcheck = $state('');
 	let status = $state<'idle' | 'sending' | 'success' | 'error'>('idle');
 
-	const isConfigured = !!PUBLIC_WEB3FORMS_KEY && PUBLIC_WEB3FORMS_KEY !== 'your_key_here';
+	const formKey = env.PUBLIC_WEB3FORMS_KEY;
+	const isConfigured = !!formKey && formKey !== "your_key_here";
 
 	async function handleSubmit(e: Event) {
 		e.preventDefault();
-		if (!isConfigured) return;
+		if (!isConfigured || status === 'sending') return;
 		status = 'sending';
 
 		try {
@@ -22,10 +29,12 @@
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
-					access_key: PUBLIC_WEB3FORMS_KEY,
+					access_key: formKey,
 					name,
 					email,
 					message,
+					botcheck,
+					subject: `Portfolio contact from ${name}`,
 					from_name: 'Portfolio Contact Form'
 				})
 			});
@@ -50,7 +59,7 @@
 />
 
 <section class="px-4 py-16">
-	<div class="mx-auto max-w-4xl text-center">
+	<div class="mx-auto max-w-6xl text-center">
 		<div class="reveal" use:reveal>
 			<h1 class="section-title">{$t.contact.title}</h1>
 		</div>
@@ -61,38 +70,83 @@
 			</p>
 		</div>
 
-		<div class="mx-auto grid max-w-3xl gap-8 md:grid-cols-2">
-			<!-- Info cards -->
-			<div class="space-y-6">
-				<div class="card reveal group" use:reveal={{ delay: 200 }}>
-					<div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10">
-						<svg class="h-7 w-7 text-accent-light" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+		<div class="mx-auto grid max-w-5xl gap-6 md:grid-cols-2">
+			<!-- Info cards. Laid out horizontally (icon beside the text rather than
+			     stacked above it) so each card is ~half the height it used to be. -->
+			<div class="flex flex-col gap-6 text-left">
+				<div class="card reveal flex items-start gap-4" use:reveal={{ delay: 200 }}>
+					<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10">
+						<svg class="h-6 w-6 text-accent-strong" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
 						</svg>
 					</div>
-					<h3 class="mb-2 font-semibold text-heading">{$t.contact.email}</h3>
-					<a
-						href="mailto:{siteData.contact.email}"
-						class="text-accent-light transition-colors hover:text-accent"
-					>
-						{siteData.contact.email}
-					</a>
+					<div class="min-w-0">
+						<h3 class="mb-1 font-semibold text-heading">{$t.contact.email}</h3>
+						<a
+							href="mailto:{siteData.contact.email}"
+							class="break-all text-accent-strong underline decoration-transparent underline-offset-2 transition hover:decoration-current"
+						>
+							{siteData.contact.email}
+						</a>
+					</div>
 				</div>
-				<div class="card reveal group" use:reveal={{ delay: 300 }}>
-					<div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-violet/10">
-						<svg class="h-7 w-7 text-violet" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+				<div class="card reveal flex items-start gap-4" use:reveal={{ delay: 250 }}>
+					<div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-violet/10">
+						<svg class="h-6 w-6 text-violet-strong" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
 							<path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
 							<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
 						</svg>
 					</div>
-					<h3 class="mb-2 font-semibold text-heading">{$t.contact.location}</h3>
-					<p class="text-muted">{siteData.contact.address}</p>
+					<div class="min-w-0">
+						<h3 class="mb-1 font-semibold text-heading">{$t.contact.location}</h3>
+						<p class="text-muted">{siteData.contact.address}</p>
+					</div>
+				</div>
+
+				<!-- Social links moved into this column so it fills the height of
+				     the form beside it instead of trailing off below the fold. -->
+				<div class="card reveal flex flex-1 flex-col justify-center" use:reveal={{ delay: 300 }}>
+					<h2 class="mb-4 font-heading text-lg font-semibold text-heading">{$t.contact.followMe}</h2>
+					<div class="flex flex-wrap gap-3">
+						<a
+							href="https://github.com/{siteData.contact.github}"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="btn-outline inline-flex items-center gap-2 !px-4 !py-2 text-sm"
+						>
+							<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+								<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+							</svg>
+							GitHub
+						</a>
+						<a
+							href="https://linkedin.com/in/{siteData.contact.linkedin}"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="btn-outline inline-flex items-center gap-2 !px-4 !py-2 text-sm"
+						>
+							<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+								<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+							</svg>
+							LinkedIn
+						</a>
+					</div>
 				</div>
 			</div>
 
 			<!-- Contact Form -->
 			<div class="card reveal text-left" use:reveal={{ delay: 350 }}>
 				<form onsubmit={handleSubmit} class="space-y-4">
+					<!-- Honeypot: hidden from sighted users and from assistive tech. -->
+					<input
+						type="text"
+						name="botcheck"
+						bind:value={botcheck}
+						class="hidden"
+						tabindex="-1"
+						autocomplete="off"
+						aria-hidden="true"
+					/>
 					<div>
 						<label for="name" class="mb-1 block text-sm font-medium text-heading">{$t.contact.name}</label>
 						<input
@@ -100,6 +154,7 @@
 							type="text"
 							bind:value={name}
 							required
+							autocomplete="name"
 							class="w-full rounded-lg px-4 py-2.5 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30 focus:ring-2 focus:ring-accent/20"
 							style="border: 1px solid var(--input-border); background: var(--input-bg)"
 						/>
@@ -111,6 +166,7 @@
 							type="email"
 							bind:value={email}
 							required
+							autocomplete="email"
 							class="w-full rounded-lg px-4 py-2.5 text-sm text-body placeholder-muted outline-none transition-colors focus:border-accent/30 focus:ring-2 focus:ring-accent/20"
 							style="border: 1px solid var(--input-border); background: var(--input-bg)"
 						/>
@@ -129,53 +185,34 @@
 					<button
 						type="submit"
 						disabled={status === 'sending' || !isConfigured}
-						class="btn-primary w-full text-center disabled:opacity-50"
+						class="btn-primary w-full text-center disabled:cursor-not-allowed disabled:opacity-50"
 					>
 						{status === 'sending' ? $t.contact.sending : $t.contact.send}
 					</button>
-					{#if !isConfigured}
-						<p class="text-sm text-muted">{$t.contact.notConfigured}</p>
-					{:else if status === 'success'}
-						<p class="text-sm text-green-400">{$t.contact.success}</p>
-					{:else if status === 'error'}
-						<p class="text-sm text-red-400">{$t.contact.errorSend}</p>
-					{/if}
+					<!-- Live region so the outcome is announced, not just recoloured.
+					     It stays mounted so screen readers pick up the change. -->
+					<div role="status" aria-live="polite" class="min-h-[1.25rem]">
+						{#if !isConfigured}
+							<p class="text-sm text-muted">{$t.contact.notConfigured}</p>
+						{:else if status === 'success'}
+							<p class="flex items-center gap-1.5 text-sm text-green-700 dark:text-green-400">
+								<svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+									<path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+								</svg>
+								{$t.contact.success}
+							</p>
+						{:else if status === 'error'}
+							<p class="flex items-center gap-1.5 text-sm text-red-700 dark:text-red-400">
+								<svg class="h-4 w-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+									<path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m0 3.75h.008M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+								</svg>
+								{$t.contact.errorSend}
+							</p>
+						{/if}
+					</div>
 				</form>
 			</div>
 		</div>
 
-		<div class="mt-12">
-			<div class="reveal" use:reveal={{ delay: 400 }}>
-				<h2 class="mb-6 text-2xl font-semibold text-heading font-heading">{$t.contact.followMe}</h2>
-			</div>
-			<div class="reveal flex justify-center gap-6" use:reveal={{ delay: 500 }}>
-				<a
-					href="https://github.com/{siteData.contact.github}"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="btn-outline flex items-center gap-2"
-				>
-					<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-						<path
-							d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-						/>
-					</svg>
-					GitHub
-				</a>
-				<a
-					href="https://linkedin.com/in/{siteData.contact.linkedin}"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="btn-outline flex items-center gap-2"
-				>
-					<svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-						<path
-							d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
-						/>
-					</svg>
-					LinkedIn
-				</a>
-			</div>
-		</div>
 	</div>
 </section>

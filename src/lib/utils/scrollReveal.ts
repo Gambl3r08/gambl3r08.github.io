@@ -14,12 +14,14 @@ interface RevealOptions {
 export function reveal(node: HTMLElement, options: RevealOptions = {}) {
 	const { delay = 0, threshold = 0.15 } = options;
 
+	let timer: ReturnType<typeof setTimeout> | undefined;
+
 	const observer = new IntersectionObserver(
 		(entries) => {
 			entries.forEach((entry) => {
 				if (entry.isIntersecting) {
 					if (delay > 0) {
-						setTimeout(() => {
+						timer = setTimeout(() => {
 							node.classList.add('revealed');
 						}, delay);
 					} else {
@@ -36,7 +38,10 @@ export function reveal(node: HTMLElement, options: RevealOptions = {}) {
 
 	return {
 		destroy() {
-			observer.unobserve(node);
+			// A pending delay would otherwise fire after the node is gone —
+			// noticeable when navigating away mid-reveal.
+			clearTimeout(timer);
+			observer.disconnect();
 		}
 	};
 }
