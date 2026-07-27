@@ -1,3 +1,7 @@
+import { yearsOfExperience } from '$lib/data/site';
+
+// Strings that quote the years of experience are template literals so the
+// figure tracks the calendar year instead of going stale.
 export const translations = {
   es: {
     // Navegación
@@ -14,7 +18,7 @@ export const translations = {
       greeting: 'Mi nombre es Roberto Lozada',
       title: 'Desarrollador de Software',
       description:
-        'Especializado en automatización de redes y sistemas inteligentes con IA. +5 años construyendo plataformas enterprise con FastAPI, OpenAI Agents y arquitecturas cloud-native.',
+        `Especializado en automatización de redes y sistemas inteligentes con IA. +${yearsOfExperience} años construyendo plataformas enterprise con FastAPI, OpenAI Agents y arquitecturas cloud-native.`,
       viewProjects: 'Ver Proyectos',
       contactMe: 'Contactar',
       downloadCV: 'Descargar CV',
@@ -31,7 +35,7 @@ export const translations = {
     about: {
       title: 'Sobre Mí',
       description:
-        'Soy desarrollador de software con más de 5 años de experiencia, especializado en el diseño y desarrollo de plataformas de automatización de redes y sistemas inteligentes basados en inteligencia artificial. He construido soluciones enterprise completas que integran agentes de IA multimodales con infraestructura de red, abarcando desde backends de alto rendimiento con FastAPI y PostgreSQL hasta interfaces conversacionales con React, pasando por arquitecturas de microservicios orquestadas con Docker y Kubernetes en Google Cloud Platform. Mi experiencia abarca el ciclo completo de desarrollo: arquitecturas hexagonales y microservicios, pipelines de RAG con LangChain y ChromaDB, sistemas multi-agente con OpenAI Agents SDK, e integración de herramientas como Netmiko, NAPALM y Ansible para gestión de dispositivos de red multi-vendor. Me apasiona resolver problemas complejos donde la IA y la ingeniería de software convergen, siempre con enfoque en Clean Architecture, seguridad robusta y despliegues containerizados listos para producción.',
+        `Soy desarrollador de software con más de ${yearsOfExperience} años de experiencia, especializado en el diseño y desarrollo de plataformas de automatización de redes y sistemas inteligentes basados en inteligencia artificial. He construido soluciones enterprise completas que integran agentes de IA multimodales con infraestructura de red, abarcando desde backends de alto rendimiento con FastAPI y PostgreSQL hasta interfaces conversacionales con React, pasando por arquitecturas de microservicios orquestadas con Docker y Kubernetes en Google Cloud Platform. Mi experiencia abarca el ciclo completo de desarrollo: arquitecturas hexagonales y microservicios, pipelines de RAG con LangChain y ChromaDB, sistemas multi-agente con OpenAI Agents SDK, e integración de herramientas como Netmiko, NAPALM y Ansible para gestión de dispositivos de red multi-vendor. Me apasiona resolver problemas complejos donde la IA y la ingeniería de software convergen, siempre con enfoque en Clean Architecture, seguridad robusta y despliegues containerizados listos para producción.`,
       experience: 'Experiencia',
       yearsExperience: 'Años de experiencia',
       projectsCompleted: 'Proyectos completados',
@@ -147,7 +151,7 @@ export const translations = {
       greeting: "Hi! my name is Roberto Lozada",
       title: 'Software Engineer',
       description:
-        'Specialized in network automation and AI-powered intelligent systems. 5+ years building enterprise platforms with FastAPI, OpenAI Agents and cloud-native architectures.',
+        `Specialized in network automation and AI-powered intelligent systems. ${yearsOfExperience}+ years building enterprise platforms with FastAPI, OpenAI Agents and cloud-native architectures.`,
       viewProjects: 'View Projects',
       contactMe: 'Contact Me',
       downloadCV: 'Download CV',
@@ -164,7 +168,7 @@ export const translations = {
     about: {
       title: 'About Me',
       description:
-        "I'm a software engineer with 5+ years of experience, specialized in designing and building network automation platforms and AI-powered intelligent systems. I've built end-to-end enterprise solutions that integrate multi-agent AI architectures with network infrastructure, spanning high-performance backends with FastAPI and PostgreSQL, conversational interfaces with React, and microservices architectures orchestrated with Docker and Kubernetes on Google Cloud Platform. My experience covers the full development lifecycle: hexagonal and microservices architectures, RAG pipelines with LangChain and ChromaDB, multi-agent systems using OpenAI Agents SDK, and integration of tools like Netmiko, NAPALM, and Ansible for multi-vendor network device management. I'm passionate about solving complex problems at the intersection of AI and software engineering, always focusing on Clean Architecture, robust security, and production-ready containerized deployments.",
+        `I'm a software engineer with ${yearsOfExperience}+ years of experience, specialized in designing and building network automation platforms and AI-powered intelligent systems. I've built end-to-end enterprise solutions that integrate multi-agent AI architectures with network infrastructure, spanning high-performance backends with FastAPI and PostgreSQL, conversational interfaces with React, and microservices architectures orchestrated with Docker and Kubernetes on Google Cloud Platform. My experience covers the full development lifecycle: hexagonal and microservices architectures, RAG pipelines with LangChain and ChromaDB, multi-agent systems using OpenAI Agents SDK, and integration of tools like Netmiko, NAPALM, and Ansible for multi-vendor network device management. I'm passionate about solving complex problems at the intersection of AI and software engineering, always focusing on Clean Architecture, robust security, and production-ready containerized deployments.`,
       experience: 'Experience',
       yearsExperience: 'Years of experience',
       projectsCompleted: 'Projects completed',

@@ -2,7 +2,11 @@
 <html lang="es">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
+		<!-- SVG first (scales to any tab/retina size); the .ico stays as the
+		     fallback for browsers that don't support SVG favicons. -->
+		<link rel="icon" href="%sveltekit.assets%/favicon.svg" type="image/svg+xml" />
+		<link rel="alternate icon" href="%sveltekit.assets%/favicon.ico" sizes="32x32" />
+		<link rel="apple-touch-icon" href="%sveltekit.assets%/apple-touch-icon.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="description" content="Portfolio de Roberto Lozada - Desarrollador Backend" />
 		<!-- Kept in sync with the resolved theme (which may be a manual override,
