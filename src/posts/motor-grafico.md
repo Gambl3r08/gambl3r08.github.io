@@ -11,7 +11,7 @@ tags:
   - csharp
 ---
 
-# Ostin Engine - Motor Grafico 2.5D Isometrico
+## Ostin Engine - Motor Grafico 2.5D Isometrico
 
 Me propuse hacer un motor grafico con C# como pasatiempo y aprendizaje.
 El motor esta construido sobre **.NET 10** usando **Silk.NET** para windowing, OpenGL, input y audio.

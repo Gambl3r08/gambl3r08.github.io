@@ -43,7 +43,7 @@ export const translations = {
       location: 'Ubicación',
       locationValue: 'Barranquilla, Colombia',
       focus: 'Enfoque',
-      focusValue: 'IA & Automatización de Redes',
+      focusValue: 'Agentes de IA, backend escalable y automatización',
       techStack: 'Tech Stack Principal',
       techStackItems: ['Python', 'FastAPI', 'OpenAI Agents', 'Docker', 'Kubernetes', 'GCP'],
       downloadCV: 'Descargar CV'
@@ -59,7 +59,11 @@ export const translations = {
       noDescription: 'Sin descripción',
       emptyState: 'No hay repositorios disponibles',
       emptyDescription: 'Los proyectos no pudieron cargarse en este momento. Visita mi perfil de GitHub directamente.',
-      visitGithub: 'Visitar GitHub'
+      visitGithub: 'Visitar GitHub',
+      lastUpdated: 'Actualizado el',
+      liveDemo: 'Ver demo',
+      noReadme: 'Este repositorio todavía no tiene README.',
+      repoListHeading: 'Repositorios'
     },
     // Skills
     skills: {
@@ -102,7 +106,8 @@ export const translations = {
       minRead: 'min de lectura',
       searchPlaceholder: 'Buscar artículos...',
       allTags: 'Todos',
-      noResults: 'No se encontraron artículos con esos filtros.'
+      noResults: 'No se encontraron artículos con esos filtros.',
+      comments: 'Comentarios'
     },
     // Contact
     contact: {
@@ -176,7 +181,7 @@ export const translations = {
       location: 'Location',
       locationValue: 'Barranquilla, Colombia',
       focus: 'Focus',
-      focusValue: 'AI & Network Automation',
+      focusValue: 'AI agents, scalable backends and automation',
       techStack: 'Main Tech Stack',
       techStackItems: ['Python', 'FastAPI', 'OpenAI Agents', 'Docker', 'Kubernetes', 'GCP'],
       downloadCV: 'Download CV'
@@ -192,7 +197,11 @@ export const translations = {
       noDescription: 'No description',
       emptyState: 'No repositories available',
       emptyDescription: 'Projects could not be loaded at this time. Visit my GitHub profile directly.',
-      visitGithub: 'Visit GitHub'
+      visitGithub: 'Visit GitHub',
+      lastUpdated: 'Updated on',
+      liveDemo: 'Live demo',
+      noReadme: 'This repository does not have a README yet.',
+      repoListHeading: 'Repositories'
     },
     // Skills
     skills: {
@@ -235,7 +244,8 @@ export const translations = {
       minRead: 'min read',
       searchPlaceholder: 'Search articles...',
       allTags: 'All',
-      noResults: 'No articles found matching those filters.'
+      noResults: 'No articles found matching those filters.',
+      comments: 'Comments'
     },
     // Contact
     contact: {

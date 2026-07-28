@@ -63,6 +63,10 @@
 				</div>
 			{/if}
 
+			<!-- The cards' titles are <h3>; without this the outline jumped h1→h3.
+			     Visually redundant next to the page title, so it's screen-reader
+			     only — but it gives a real landmark to navigate the list by. -->
+			<h2 class="sr-only">{$t.projects.repoListHeading}</h2>
 			<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 				{#each filteredRepos as repo, i (repo.id)}
 					<div class="reveal" use:reveal={{ delay: i * 80 }}>
@@ -77,7 +81,7 @@
 						<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 0 1 4.5 9.75h15A2.25 2.25 0 0 1 21.75 12v.75m-8.69-6.44-2.12-2.12a1.5 1.5 0 0 0-1.061-.44H4.5A2.25 2.25 0 0 0 2.25 6v12a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9a2.25 2.25 0 0 0-2.25-2.25h-5.379a1.5 1.5 0 0 1-1.06-.44Z" />
 					</svg>
 				</div>
-				<h3 class="mb-2 text-lg font-semibold text-heading">{$t.projects.emptyState}</h3>
+				<h2 class="mb-2 text-lg font-semibold text-heading">{$t.projects.emptyState}</h2>
 				<p class="mb-6 text-sm text-muted">
 					{$t.projects.emptyDescription}
 				</p>

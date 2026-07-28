@@ -81,7 +81,7 @@
 						</svg>
 					</div>
 					<div class="min-w-0">
-						<h3 class="mb-1 font-semibold text-heading">{$t.contact.email}</h3>
+						<h2 class="mb-1 font-semibold text-heading">{$t.contact.email}</h2>
 						<a
 							href="mailto:{siteData.contact.email}"
 							class="break-all text-accent-strong underline decoration-transparent underline-offset-2 transition hover:decoration-current"
@@ -98,7 +98,7 @@
 						</svg>
 					</div>
 					<div class="min-w-0">
-						<h3 class="mb-1 font-semibold text-heading">{$t.contact.location}</h3>
+						<h2 class="mb-1 font-semibold text-heading">{$t.contact.location}</h2>
 						<p class="text-muted">{siteData.contact.address}</p>
 					</div>
 				</div>

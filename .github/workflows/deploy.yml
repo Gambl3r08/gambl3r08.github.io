@@ -41,6 +41,13 @@ jobs:
           # Raises the GitHub API quota from 60/h per runner IP to 5000/h, so
           # the projects page doesn't build empty under rate limiting.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # giscus comments. These are public identifiers, not secrets, so they
+          # live in repository *variables*. Comments stay hidden until all four
+          # are set — see README.
+          PUBLIC_GISCUS_REPO: ${{ vars.PUBLIC_GISCUS_REPO }}
+          PUBLIC_GISCUS_REPO_ID: ${{ vars.PUBLIC_GISCUS_REPO_ID }}
+          PUBLIC_GISCUS_CATEGORY: ${{ vars.PUBLIC_GISCUS_CATEGORY }}
+          PUBLIC_GISCUS_CATEGORY_ID: ${{ vars.PUBLIC_GISCUS_CATEGORY_ID }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

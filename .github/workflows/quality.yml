@@ -1,0 +1,73 @@
+name: Quality
+
+# Deliberately separate from deploy.yml: these checks report, they do not gate
+# publishing. If you later want them to block, enable branch protection on
+# `main` requiring this workflow instead of coupling it to the deploy job.
+on:
+  push:
+    branches: ['main']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npm run check
+
+      - name: Build
+        run: npm run build
+        env:
+          PUBLIC_WEB3FORMS_KEY: ${{ secrets.PUBLIC_WEB3FORMS_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Serve build
+        run: |
+          npx --yes serve build -l 4173 &
+          npx --yes wait-on http://localhost:4173 --timeout 60000
+
+      - name: Accessibility (pa11y / axe + htmlcs)
+        run: npx --yes pa11y-ci --config .pa11yci.json
+
+      - name: Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./lighthouserc.json
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check links in content
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Only our own markdown. The built HTML embeds third-party READMEs
+          # whose links we don't control and can't sensibly fix here.
+          args: >-
+            --no-progress
+            --max-retries 2
+            --exclude-all-private
+            --accept 200,206,429
+            'src/posts/**/*.md'
+            'README.md'
+          fail: true

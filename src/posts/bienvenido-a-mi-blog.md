@@ -9,8 +9,6 @@ tags:
   - desarrollo
 ---
 
-# Bienvenido a mi Blog
-
 ¡Hola! Soy Roberto Lozada, desarrollador de software con más de 5 años de experiencia. Este es mi espacio personal donde compartiré artículos sobre desarrollo de software, buenas prácticas y tecnologías cloud.
 
 ## ¿Qué encontrarás aquí?

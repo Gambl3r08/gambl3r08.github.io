@@ -24,6 +24,9 @@ const config = {
 		}),
 		prerender: {
 			entries: ['*'],
+			// README content is authored in other repositories, so a stale anchor
+			// in one of them shouldn't be able to break this site's deploy.
+			handleMissingId: 'warn',
 			handleHttpError: ({ path, referrer, message }) => {
 				// The avatar is optional: /about renders initials via its onerror
 				// fallback when it's absent. Every other broken link should still

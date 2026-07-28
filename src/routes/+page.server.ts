@@ -15,7 +15,6 @@ export const load: PageServerLoad = async () => {
 	let repos: Awaited<ReturnType<typeof fetchUserRepos>> = [];
 	try {
 		repos = await fetchUserRepos({
-			per_page: 12,
 			sort: 'pushed',
 			exclude: ['gambl3r08.github.io'],
 			token: env.GITHUB_TOKEN

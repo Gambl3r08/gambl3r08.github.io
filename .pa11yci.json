@@ -1,0 +1,23 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "runners": ["axe", "htmlcs"],
+    "timeout": 30000,
+    "chromeLaunchConfig": {
+      "args": ["--no-sandbox", "--disable-dev-shm-usage"]
+    },
+    "hideElements": "iframe.giscus-frame",
+    "ignore": [
+      "notice",
+      "warning"
+    ]
+  },
+  "urls": [
+    "http://localhost:4173/",
+    "http://localhost:4173/about",
+    "http://localhost:4173/projects",
+    "http://localhost:4173/skills",
+    "http://localhost:4173/blog",
+    "http://localhost:4173/contact"
+  ]
+}

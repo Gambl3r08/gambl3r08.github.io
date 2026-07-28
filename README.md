@@ -216,7 +216,66 @@ git push origin main
 
 ### Deploy automático
 
-Cada push a `main` despliega automáticamente el sitio en ~1 minuto.
+Cada push a `main` despliega automáticamente el sitio en ~1 minuto. Además hay
+un rebuild semanal programado (lunes 06:00 UTC) para refrescar los datos que se
+leen de la API de GitHub en tiempo de build.
+
+## Curar qué proyectos aparecen
+
+La página de Proyectos se construye desde la API de GitHub. Por defecto muestra
+tus repos propios ordenados por fecha de push, lo que incluye repos de práctica.
+
+Para elegir qué se publica, **añade el topic `portfolio`** a los repos que
+quieras destacar:
+
+> Repositorio → pestaña **About** (arriba a la derecha) → ⚙ → campo **Topics** →
+> escribe `portfolio` → **Save changes**
+
+En cuanto un repo tenga el topic, la web pasa a mostrar **solo** los que lo
+lleven. Mientras ninguno lo tenga, se muestran todos y el build deja un aviso.
+
+Se excluyen siempre: forks, repos archivados, `gambl3r08.github.io` y el repo de
+perfil `Gambl3r08`.
+
+Cada proyecto genera además una ficha en `/projects/<nombre>` con su README
+renderizado por GitHub. Un repo sin README muestra igualmente su ficha con los
+metadatos.
+
+## Comentarios en el blog (giscus)
+
+Los comentarios usan **GitHub Discussions**. No se renderizan hasta que las
+cuatro variables estén configuradas, así que el blog funciona sin ellas.
+
+Alta, una sola vez:
+
+1. **Settings → General → Features** → marca **Discussions**.
+2. Instala la app: <https://github.com/apps/giscus> (dale acceso a este repo).
+3. Ve a <https://giscus.app>, introduce `Gambl3r08/gambl3r08.github.io` y elige
+   el mapeo **pathname**. La página te devuelve `data-repo-id` y
+   `data-category-id`.
+4. En **Settings → Secrets and variables → Actions → Variables**, crea:
+
+   | Variable | Valor |
+   |---|---|
+   | `PUBLIC_GISCUS_REPO` | `Gambl3r08/gambl3r08.github.io` |
+   | `PUBLIC_GISCUS_REPO_ID` | el `data-repo-id` de giscus.app |
+   | `PUBLIC_GISCUS_CATEGORY` | p. ej. `Announcements` |
+   | `PUBLIC_GISCUS_CATEGORY_ID` | el `data-category-id` de giscus.app |
+
+   Son identificadores públicos, no secretos: por eso van en *Variables* y no en
+   *Secrets*.
+
+Para probarlo en local, copia esos valores a tu `.env`.
+
+## Chequeos de calidad
+
+`.github/workflows/quality.yml` corre en cada push y PR: type-check, build,
+accesibilidad (pa11y con axe + HTML_CodeSniffer), Lighthouse y detección de
+enlaces rotos en los posts.
+
+Es **independiente del deploy**: si un chequeo falla, el sitio se publica igual.
+Para que bloquee, activa protección de rama en `main` exigiendo el workflow
+`Quality`.
 
 ## Licencia
 

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import SEOHead from '$lib/components/SEOHead.svelte';
+	import Comments from '$lib/components/Comments.svelte';
 	import { siteData } from '$lib/data/site';
 	import { t, language } from '$lib/i18n';
 	import { onMount } from 'svelte';
@@ -171,8 +172,10 @@
 			</div>
 		</div>
 
-		<footer class="mt-12 border-t border-white/[0.06] pt-8 text-center">
+		<footer class="mt-12 pt-8 text-center" style="border-top: 1px solid var(--glass-border)">
 			<a href="/blog" class="btn-outline">{$t.blog.backToBlog}</a>
 		</footer>
+
+		<Comments />
 	</div>
 </article>
