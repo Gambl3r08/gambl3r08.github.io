@@ -15,7 +15,6 @@ export const translations = {
     },
     // Home
     home: {
-      // El nombre va en el <h1> de la portada; repetirlo aquí lo duplicaba.
       greeting: 'Hola, mi nombre es',
       title: 'Desarrollador de Software',
       description:
