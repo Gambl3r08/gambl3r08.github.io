@@ -1,0 +1,6 @@
+# Patterns (regex) for links lychee should not try to resolve.
+
+# README documents the markdown syntax for blog posts inside a fenced block.
+# The image path there is a placeholder for the reader to replace, not a link
+# this repo is supposed to satisfy — lychee extracts links from code fences too.
+mi-imagen\.jpg

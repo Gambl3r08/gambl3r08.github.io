@@ -42,8 +42,14 @@ jobs:
           npx --yes serve build -l 4173 &
           npx --yes wait-on http://localhost:4173 --timeout 60000
 
+      # Wrapper rather than plain pa11y-ci: it drops axe's "needs further
+      # review" results, which this site's gradients and glass surfaces trigger
+      # everywhere. See scripts/a11y.mjs. Chrome is also launched with
+      # --force-prefers-reduced-motion (.pa11yci.json) so the scroll-reveal
+      # transitions land at their final opacity — sampling mid-fade produced
+      # blended colours and non-deterministic contrast results.
       - name: Accessibility (pa11y / axe + htmlcs)
-        run: npx --yes pa11y-ci --config .pa11yci.json
+        run: npm run check:a11y
 
       - name: Lighthouse
         uses: treosh/lighthouse-ci-action@v12
@@ -68,6 +74,7 @@ jobs:
             --max-retries 2
             --exclude-all-private
             --accept 200,206,429
+            --root-dir ${{ github.workspace }}/static
             'src/posts/**/*.md'
             'README.md'
           fail: true

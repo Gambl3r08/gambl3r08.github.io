@@ -37,6 +37,19 @@ npm run preview
 
 Abre http://localhost:4173 para ver el sitio como se verá en producción.
 
+### 4. Comprobación de accesibilidad
+
+Con el build servido en http://localhost:4173 (`npx serve build -l 4173`):
+
+```bash
+npm run check:a11y            # falla si hay errores reales
+npm run check:a11y -- --verbose  # además lista los casos indecidibles
+```
+
+Envuelve a `pa11y-ci` (axe + HTML_CodeSniffer). Los resultados que axe marca
+como *incomplete* — fondos que no puede calcular por gradientes, glass o
+solapamientos — se cuentan aparte y no rompen el build. Ver `scripts/a11y.mjs`.
+
 ## Estructura del Proyecto
 
 ```

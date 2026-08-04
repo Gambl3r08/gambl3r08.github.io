@@ -4,7 +4,11 @@
     "runners": ["axe", "htmlcs"],
     "timeout": 30000,
     "chromeLaunchConfig": {
-      "args": ["--no-sandbox", "--disable-dev-shm-usage"]
+      "args": [
+        "--no-sandbox",
+        "--disable-dev-shm-usage",
+        "--force-prefers-reduced-motion"
+      ]
     },
     "hideElements": "iframe.giscus-frame",
     "ignore": [

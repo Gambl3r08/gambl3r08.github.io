@@ -47,7 +47,7 @@
 		<div class="flex h-16 items-center justify-between">
 			<a
 				href="/"
-				class="font-heading text-xl font-bold bg-gradient-to-r from-accent-strong to-violet-strong bg-clip-text text-transparent transition-opacity hover:opacity-80"
+				class="font-heading text-xl font-bold bg-gradient-to-r from-accent-strong to-violet-strong text-gradient transition-opacity hover:opacity-80"
 			>
 				Roberto Lozada
 			</a>

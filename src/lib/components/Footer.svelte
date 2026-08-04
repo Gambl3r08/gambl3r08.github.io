@@ -25,7 +25,7 @@
 			<div>
 				<a
 					href="/"
-					class="mb-2 inline-block font-heading text-lg font-bold bg-gradient-to-r from-accent-strong to-violet-strong bg-clip-text text-transparent"
+					class="mb-2 inline-block font-heading text-lg font-bold bg-gradient-to-r from-accent-strong to-violet-strong text-gradient"
 				>
 					{siteData.name}
 				</a>

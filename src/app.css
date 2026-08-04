@@ -18,8 +18,8 @@
 		--accent-rgb: 245 158 11;
 		--accent-light-rgb: 251 191 36;
 		--accent-secondary-rgb: 249 115 22;
-		--accent-deep-rgb: 180 83 9;
-		--accent-secondary-deep-rgb: 194 65 12;
+		--accent-deep-rgb: 160 74 8;
+		--accent-secondary-deep-rgb: 173 58 10;
 	}
 	[data-palette="indigo"] {
 		--accent: #6366f1;
@@ -38,7 +38,7 @@
 		--accent-rgb: 249 115 22;
 		--accent-light-rgb: 251 146 60;
 		--accent-secondary-rgb: 234 88 12;
-		--accent-deep-rgb: 194 65 12;
+		--accent-deep-rgb: 173 58 10;
 		--accent-secondary-deep-rgb: 154 52 18;
 	}
 	[data-palette="burnt-coral"] {
@@ -58,7 +58,7 @@
 		--accent-rgb: 224 124 79;
 		--accent-light-rgb: 237 164 122;
 		--accent-secondary-rgb: 201 104 48;
-		--accent-deep-rgb: 163 84 31;
+		--accent-deep-rgb: 149 76 27;
 		--accent-secondary-deep-rgb: 138 69 25;
 	}
 	[data-palette="sunset"] {
@@ -68,7 +68,7 @@
 		--accent-rgb: 249 115 22;
 		--accent-light-rgb: 251 191 36;
 		--accent-secondary-rgb: 239 68 68;
-		--accent-deep-rgb: 194 65 12;
+		--accent-deep-rgb: 173 58 10;
 		--accent-secondary-deep-rgb: 185 28 28;
 	}
 
@@ -79,7 +79,10 @@
 		--color-surface-elevated: #e2e8f0;
 		--color-heading: #0f172a;
 		--color-body: #334155;
-		--color-muted: #64748b;
+		/* slate-500 (#64748b) only reaches 4.15–4.43:1 over these light
+		 * surfaces — under AA. Darkened just enough to clear 4.5:1 on the
+		 * elevated surface too, while staying visibly lighter than body. */
+		--color-muted: #556274;
 
 		/* Glassmorphism tokens */
 		--glass-bg: rgba(241, 245, 249, 0.75);
@@ -204,6 +207,22 @@
 }
 
 @layer components {
+	/* Gradient text.
+	 *
+	 * Pair with a `bg-gradient-to-*` utility. Deliberately not `bg-clip-text
+	 * text-transparent`: that leaves the computed `color` at rgba(0,0,0,0),
+	 * which axe scores as a contrast failure, and paints nothing at all where
+	 * `background-clip: text` is unsupported. Clearing only the *fill* keeps
+	 * `color` as a real, AA-passing value — both the fallback and what
+	 * auditors measure. The gradient stops are the same accent tiers, so the
+	 * painted pixels never fall below the reported ratio. */
+	.text-gradient {
+		color: rgb(var(--accent-strong-rgb));
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+
 	.btn-primary {
 		@apply inline-block px-6 py-3 rounded-lg font-medium transition-all duration-300;
 		background: linear-gradient(135deg, var(--btn-from), var(--btn-to));

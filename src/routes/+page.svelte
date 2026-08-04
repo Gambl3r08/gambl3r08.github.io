@@ -89,7 +89,7 @@
 				</div>
 				<div class="reveal" use:reveal={{ delay: 100 }}>
 					<h1 class="mb-2 font-heading text-4xl font-bold md:text-5xl">
-						<span class="bg-gradient-to-r from-accent-strong via-violet-strong to-accent-strong bg-clip-text text-transparent" style="background-size: 200% auto; animation: gradientShift 8s ease infinite">{siteData.name}</span>
+						<span class="bg-gradient-to-r from-accent-strong via-violet-strong to-accent-strong text-gradient" style="background-size: 200% auto; animation: gradientShift 8s ease infinite">{siteData.name}</span>
 					</h1>
 				</div>
 				<div class="reveal" use:reveal={{ delay: 200 }}>
