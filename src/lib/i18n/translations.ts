@@ -15,10 +15,11 @@ export const translations = {
     },
     // Home
     home: {
-      greeting: 'Mi nombre es Roberto Lozada',
+      // El nombre va en el <h1> de la portada; repetirlo aquí lo duplicaba.
+      greeting: 'Hola, mi nombre es',
       title: 'Desarrollador de Software',
       description:
-        `Especializado en automatización de redes y sistemas inteligentes con IA. +${yearsOfExperience} años construyendo plataformas enterprise con FastAPI, OpenAI Agents y arquitecturas cloud-native.`,
+        `Especializado en automatización de redes y sistemas inteligentes con IA. +${yearsOfExperience} años construyendo plataformas enterprise con Python, .NET y Rust: desde APIs con FastAPI y agentes de OpenAI hasta servicios de alto rendimiento y arquitecturas cloud-native.`,
       viewProjects: 'Ver Proyectos',
       contactMe: 'Contactar',
       downloadCV: 'Descargar CV',
@@ -35,7 +36,7 @@ export const translations = {
     about: {
       title: 'Sobre Mí',
       description:
-        `Soy desarrollador de software con más de ${yearsOfExperience} años de experiencia, especializado en el diseño y desarrollo de plataformas de automatización de redes y sistemas inteligentes basados en inteligencia artificial. He construido soluciones enterprise completas que integran agentes de IA multimodales con infraestructura de red, abarcando desde backends de alto rendimiento con FastAPI y PostgreSQL hasta interfaces conversacionales con React, pasando por arquitecturas de microservicios orquestadas con Docker y Kubernetes en Google Cloud Platform. Mi experiencia abarca el ciclo completo de desarrollo: arquitecturas hexagonales y microservicios, pipelines de RAG con LangChain y ChromaDB, sistemas multi-agente con OpenAI Agents SDK, e integración de herramientas como Netmiko, NAPALM y Ansible para gestión de dispositivos de red multi-vendor. Me apasiona resolver problemas complejos donde la IA y la ingeniería de software convergen, siempre con enfoque en Clean Architecture, seguridad robusta y despliegues containerizados listos para producción.`,
+        `Soy desarrollador de software con más de ${yearsOfExperience} años de experiencia, especializado en el diseño y desarrollo de plataformas de automatización de redes y sistemas inteligentes basados en inteligencia artificial. Trabajo de forma habitual con Python, .NET y Rust: aplicaciones empresariales en C#/.NET, servicios y herramientas de sistemas en Rust cuando el rendimiento y la seguridad de memoria son críticos, y backends de alto rendimiento con FastAPI y PostgreSQL. He construido soluciones enterprise completas que integran agentes de IA multimodales con infraestructura de red, desde interfaces conversacionales con React hasta arquitecturas de microservicios orquestadas con Docker y Kubernetes en Google Cloud Platform. Mi experiencia abarca el ciclo completo de desarrollo: arquitecturas hexagonales y microservicios, pipelines de RAG con LangChain y ChromaDB, sistemas multi-agente con OpenAI Agents SDK, e integración de herramientas como Netmiko, NAPALM y Ansible para gestión de dispositivos de red multi-vendor. Me apasiona resolver problemas complejos donde la IA y la ingeniería de software convergen, siempre con enfoque en Clean Architecture, seguridad robusta y despliegues containerizados listos para producción.`,
       experience: 'Experiencia',
       yearsExperience: 'Años de experiencia',
       projectsCompleted: 'Proyectos completados',
@@ -45,7 +46,7 @@ export const translations = {
       focus: 'Enfoque',
       focusValue: 'Agentes de IA, backend escalable y automatización',
       techStack: 'Tech Stack Principal',
-      techStackItems: ['Python', 'FastAPI', 'OpenAI Agents', 'Docker', 'Kubernetes', 'GCP'],
+      techStackItems: ['Python', 'FastAPI', '.NET', 'Rust', 'OpenAI Agents', 'Docker', 'Kubernetes', 'GCP'],
       downloadCV: 'Descargar CV'
     },
     // Projects
@@ -153,10 +154,11 @@ export const translations = {
     },
     // Home
     home: {
-      greeting: "Hi! my name is Roberto Lozada",
+      // The name lives in the home page <h1>; repeating it here duplicated it.
+      greeting: 'Hi! my name is',
       title: 'Software Engineer',
       description:
-        `Specialized in network automation and AI-powered intelligent systems. ${yearsOfExperience}+ years building enterprise platforms with FastAPI, OpenAI Agents and cloud-native architectures.`,
+        `Specialized in network automation and AI-powered intelligent systems. ${yearsOfExperience}+ years building enterprise platforms with Python, .NET and Rust — from FastAPI APIs and OpenAI agents to high-performance services and cloud-native architectures.`,
       viewProjects: 'View Projects',
       contactMe: 'Contact Me',
       downloadCV: 'Download CV',
@@ -173,7 +175,7 @@ export const translations = {
     about: {
       title: 'About Me',
       description:
-        `I'm a software engineer with ${yearsOfExperience}+ years of experience, specialized in designing and building network automation platforms and AI-powered intelligent systems. I've built end-to-end enterprise solutions that integrate multi-agent AI architectures with network infrastructure, spanning high-performance backends with FastAPI and PostgreSQL, conversational interfaces with React, and microservices architectures orchestrated with Docker and Kubernetes on Google Cloud Platform. My experience covers the full development lifecycle: hexagonal and microservices architectures, RAG pipelines with LangChain and ChromaDB, multi-agent systems using OpenAI Agents SDK, and integration of tools like Netmiko, NAPALM, and Ansible for multi-vendor network device management. I'm passionate about solving complex problems at the intersection of AI and software engineering, always focusing on Clean Architecture, robust security, and production-ready containerized deployments.`,
+        `I'm a software engineer with ${yearsOfExperience}+ years of experience, specialized in designing and building network automation platforms and AI-powered intelligent systems. I work day to day across Python, .NET and Rust: enterprise applications in C#/.NET, services and systems tooling in Rust where performance and memory safety matter, and high-performance backends with FastAPI and PostgreSQL. I've built end-to-end enterprise solutions that integrate multi-agent AI architectures with network infrastructure, from conversational interfaces with React to microservices architectures orchestrated with Docker and Kubernetes on Google Cloud Platform. My experience covers the full development lifecycle: hexagonal and microservices architectures, RAG pipelines with LangChain and ChromaDB, multi-agent systems using OpenAI Agents SDK, and integration of tools like Netmiko, NAPALM, and Ansible for multi-vendor network device management. I'm passionate about solving complex problems at the intersection of AI and software engineering, always focusing on Clean Architecture, robust security, and production-ready containerized deployments.`,
       experience: 'Experience',
       yearsExperience: 'Years of experience',
       projectsCompleted: 'Projects completed',
@@ -183,7 +185,7 @@ export const translations = {
       focus: 'Focus',
       focusValue: 'AI agents, scalable backends and automation',
       techStack: 'Main Tech Stack',
-      techStackItems: ['Python', 'FastAPI', 'OpenAI Agents', 'Docker', 'Kubernetes', 'GCP'],
+      techStackItems: ['Python', 'FastAPI', '.NET', 'Rust', 'OpenAI Agents', 'Docker', 'Kubernetes', 'GCP'],
       downloadCV: 'Download CV'
     },
     // Projects

@@ -159,7 +159,7 @@
 				{$t.home.techStrip}
 			</h2>
 			<ul class="flex flex-wrap items-center justify-center gap-x-8 gap-y-3">
-				{#each ['Python', 'FastAPI', 'Go', '.NET', 'TypeScript', 'Docker', 'Kubernetes', 'GCP', 'PostgreSQL'] as tech}
+				{#each ['Python', 'FastAPI', '.NET', 'Rust', 'Go', 'TypeScript', 'Docker', 'Kubernetes', 'GCP', 'PostgreSQL'] as tech}
 					<li class="text-sm font-medium text-body transition-colors hover:text-accent-strong">{tech}</li>
 				{/each}
 			</ul>

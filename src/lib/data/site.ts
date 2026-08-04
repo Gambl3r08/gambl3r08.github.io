@@ -25,8 +25,8 @@ export const yearsOfExperience = new Date().getFullYear() - CAREER_START_YEAR;
 export const siteData: SiteData = {
 	name: 'Roberto Lozada',
 	title: 'Desarrollador de Software',
-	description: `Especializado en automatización de redes y sistemas inteligentes con IA. +${yearsOfExperience} años de experiencia.`,
-	aboutDescription: `Desarrollador de software con más de ${yearsOfExperience} años de experiencia en automatización de redes y sistemas de IA.`,
+	description: `Especializado en automatización de redes y sistemas inteligentes con IA. +${yearsOfExperience} años construyendo aplicaciones con Python, .NET y Rust.`,
+	aboutDescription: `Desarrollador de software con más de ${yearsOfExperience} años de experiencia en automatización de redes y sistemas de IA, con aplicaciones en Python, .NET y Rust.`,
 	skills: [
 		'Python',
 		'Go',
