@@ -166,13 +166,48 @@ export async function fetchRepo(repoName: string, token?: string): Promise<GitHu
 	return response.json();
 }
 
+/** Already a scheme, a protocol-relative URL, or a fragment — leave it alone. */
+const ABSOLUTE_URL = /^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i;
+
+/**
+ * Point a README-relative path at GitHub.
+ *
+ * Images have to go through raw.githubusercontent.com to come back as bytes
+ * rather than as a repository page; everything else resolves to the blob view,
+ * which is what a reader clicking "CONTRIBUTING.md" expects. `HEAD` stands in
+ * for the default branch, so this survives a rename of `main`.
+ */
+function toGitHubUrl(path: string, repoName: string, kind: 'asset' | 'page'): string {
+	const clean = path.trim().replace(/^\.?\//, '');
+	return kind === 'asset'
+		? `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${repoName}/HEAD/${clean}`
+		: `https://github.com/${GITHUB_USERNAME}/${repoName}/blob/HEAD/${clean}`;
+}
+
+/** A srcset is `url [descriptor]` entries separated by commas. */
+function absolutizeSrcset(value: string, repoName: string): string {
+	return value
+		.split(',')
+		.map((entry) => {
+			const [url, ...descriptor] = entry.trim().split(/\s+/);
+			if (!url || ABSOLUTE_URL.test(url)) return entry.trim();
+			return [toGitHubUrl(url, repoName, 'asset'), ...descriptor].join(' ');
+		})
+		.join(', ');
+}
+
 /**
  * A repository's README, rendered to HTML by GitHub itself.
  *
  * Using `Accept: application/vnd.github.html` means GitHub does the GFM
- * rendering (tables, task lists, callouts, syntax highlighting) and rewrites
- * relative links against the repo — no markdown dependency on our side, and
- * the output matches what people see on GitHub.
+ * rendering (tables, task lists, callouts, syntax highlighting) — no markdown
+ * dependency on our side, and the output matches what people see on GitHub.
+ *
+ * What it does *not* do is resolve relative paths: a README that references
+ * `packaging/banner.png` or `CONTRIBUTING.md` comes back with those strings
+ * verbatim, and they then resolve against `/projects/<name>` on this site.
+ * That is not merely a broken image — the prerenderer follows them, 404s, and
+ * takes the whole deploy down with it. So rewrite them here.
  *
  * Returns null when the repo simply has no README (a 404 here is normal).
  */
@@ -200,6 +235,15 @@ export async function fetchRepoReadme(
 	}
 
 	let html = await response.text();
+
+	html = html
+		.replace(/\bsrcset="([^"]*)"/g, (_, value: string) => `srcset="${absolutizeSrcset(value, repoName)}"`)
+		.replace(/\bsrc="([^"]*)"/g, (match, value: string) =>
+			ABSOLUTE_URL.test(value) ? match : `src="${toGitHubUrl(value, repoName, 'asset')}"`
+		)
+		.replace(/\bhref="([^"]*)"/g, (match, value: string) =>
+			ABSOLUTE_URL.test(value) ? match : `href="${toGitHubUrl(value, repoName, 'page')}"`
+		);
 
 	// GitHub emits `id="user-content-foo"` but links to `#foo`, relying on
 	// client-side JS on github.com to bridge the two. Dropping the prefix makes

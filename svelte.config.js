@@ -29,12 +29,22 @@ const config = {
 			handleMissingId: 'warn',
 			handleHttpError: ({ path, referrer, message }) => {
 				// The avatar is optional: /about renders initials via its onerror
-				// fallback when it's absent. Every other broken link should still
-				// fail the build.
+				// fallback when it's absent.
 				if (path === '/profile.webp') {
 					console.warn(`[prerender] optional asset missing: ${path} (from ${referrer})`);
 					return;
 				}
+				// Same reasoning as handleMissingId above, for links rather than
+				// anchors. An individual project page is someone else's README;
+				// a relative path in it that we failed to rewrite (see
+				// fetchRepoReadme) must not be able to take the deploy down —
+				// which is exactly what happened once, freezing the published
+				// site while the repo list silently went stale.
+				if (/^\/projects\/.+/.test(referrer ?? '')) {
+					console.warn(`[prerender] unresolved README link: ${path} (from ${referrer})`);
+					return;
+				}
+				// Every other broken link still fails the build.
 				throw new Error(message);
 			}
 		}
