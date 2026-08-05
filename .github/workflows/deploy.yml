@@ -5,9 +5,11 @@ on:
     branches: ['main']
   workflow_dispatch:
   # The projects page is baked from the GitHub API at build time, so rebuild
-  # weekly to keep it in sync with the repositories.
+  # daily to keep it in sync with the repositories. Anything done on GitHub
+  # rather than in this repo — publishing a repo, adding the `portfolio` topic,
+  # editing a README — only reaches the site through one of these runs.
   schedule:
-    - cron: '0 6 * * 1'
+    - cron: '0 6 * * *'
 
 permissions:
   contents: read

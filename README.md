@@ -230,8 +230,13 @@ git push origin main
 ### Deploy automático
 
 Cada push a `main` despliega automáticamente el sitio en ~1 minuto. Además hay
-un rebuild semanal programado (lunes 06:00 UTC) para refrescar los datos que se
-leen de la API de GitHub en tiempo de build.
+un rebuild diario programado (06:00 UTC) para refrescar los datos que se leen de
+la API de GitHub en tiempo de build.
+
+Los cambios hechos en GitHub y no en este repo —publicar un repositorio, añadir
+el topic `portfolio`, editar un README— solo llegan al sitio con un deploy. Si
+no quieres esperar al rebuild diario, lánzalo a mano: Actions → *Deploy to
+GitHub Pages* → **Run workflow**.
 
 ## Curar qué proyectos aparecen
 
