@@ -34,7 +34,7 @@
 			</svg>
 			<h3 class="truncate text-lg font-semibold text-heading transition-colors group-hover:text-accent-strong">{repo.name}</h3>
 		</div>
-		<div class="flex items-center gap-3 text-sm text-muted shrink-0">
+		<div class="flex items-center gap-3 pr-8 text-sm text-muted shrink-0">
 			{#if repo.stargazers_count > 0}
 				<span class="flex items-center gap-1">
 					<svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -83,7 +83,7 @@
 	</div>
 
 	<!-- Navigation affordance -->
-	<svg class="absolute bottom-5 right-5 h-4 w-4 text-muted/0 transition-all group-hover:text-muted" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
+	<svg class="absolute top-5 right-5 h-4 w-4 text-muted/0 transition-all group-hover:text-muted" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
 		<path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
 	</svg>
 </a>
